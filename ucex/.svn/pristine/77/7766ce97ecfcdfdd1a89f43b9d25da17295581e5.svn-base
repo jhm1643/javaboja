@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+
+	<body>
+		<span id="title"><h2>Response</h2></span>
+		
+		<form id="form">
+			<input id="id" type="text" name="id" placeholder="id..." />
+			<br>
+			<input id="meh.feh" type="text" name="meh.feh" placeholder="meh feh..." />
+			<input id="meh.bleh" type="text" name="meh.bleh" placeholder="meh bleh..." />
+			<br>
+			<input id="tom.tum" type="text" name="tom.tum" placeholder="tom tum..." />  
+			<br>
+			<textarea id="blah" name="blah" rows="8" cols="64" placeholder="blah"></textarea>
+			<br>  
+			<input id="tom.dick.harry" type="text" name="tom.dick.harry" placeholder="tom dick harry..." />
+			<input id="tom.dick.hairy" type="text" name="tom.dick.hairy" placeholder="tom dick hairy..." />  
+			<br>
+			<input id="tom.tom.tom" type="text" name="tom.tom.tom" placeholder="tom tom tom..." />
+			<input id="tom.tom.tim" type="text" name="tom.tom.tim" placeholder="tom tom tim..." />  
+			<br>
+			<input id="tom.thumb" type="text" name="tom.thumb" placeholder="tom thumb..." />  
+			<br>
+			<input id="input" type="submit" name="submit" value="Post It" />
+		</form>
+		
+		<div id="result"></div>
+		
+		<script>
+			$.fn.formToJSON = function() {
+				var objectGraph = {};
+
+				function add(objectGraph, name, value) {
+					if(name.length == 1) {
+						//if the array is now one element long, we're done
+						objectGraph[name[0]] = value;
+					}
+					else {
+						//else we've still got more than a single element of depth
+						if(objectGraph[name[0]] == null) {
+							//create the node if it doesn't yet exist
+							objectGraph[name[0]] = {};
+						}
+					//recurse, chopping off the first array element
+						add(objectGraph[name[0]], name.slice(1), value);
+					}
+				};
+				//loop through all of the input/textarea elements of the form
+				//this.find('input, textarea').each(function() {
+				$(this).children('input, textarea').each(function() {
+					//ignore the submit button
+					if($(this).attr('name') != 'submit') {
+						//split the dot notated names into arrays and pass along with the value
+						add(objectGraph, $(this).attr('name').split('.'), $(this).val());
+					}
+				});
+				return JSON.stringify(objectGraph);
+			};
+
+			$.ajaxSetup({
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			});
+
+			$(document).ready(function(){
+				$('#input').click(function() {
+					var send = $("#form").formToJSON();
+					$.ajax({
+						url: "http://blah.feh.com/something",
+						type: "POST",
+						data: send,
+						error: function(xhr, error) {
+							alert('Error!  Status = ' + xhr.status + ' Message = ' + error);
+						},
+						success: function(data) {
+							//have you service return the created object
+							var items = [];
+							items.push('<table cellpadding="4" cellspacing="4">');
+							items.push('<tr><td>ID</td><td>' + data.id + '</td></tr>');
+							items.push('<tr><td>Meh Feh</td><td>' + data.meh.feh + '</td></tr>');
+							items.push('<tr><td>Meh Peh</td><td>' + data.meh.peh + '</td></tr>');
+							//etc
+							items.push('</table>');  
+							$('#result').html(items.join(''));
+						}
+					});
+					return false; 
+				});
+			});
+		</script>
+	</body>
+</html>

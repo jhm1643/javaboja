@@ -1,0 +1,8 @@
+<html>
+	<body>
+		<h2>Operations</h2>
+		<br><a href="">Login</a>
+		<br><a href="">Logout</a>
+		<br><a href="">CheckConnection</a>
+	</body>
+</html>
