@@ -35,7 +35,6 @@ public class PushTestController {
 
 	@RequestMapping(value = "/nexus/push/test" , method = RequestMethod.POST)
 	public ResponseEntity<HttpStatusDomain> push(@RequestBody PushDomain pushDomain,HttpServletRequest request, HttpServletResponse res){
-		logger.info("sadfsdfsdfasdfdsajfosadjfoasdf");
 		logger.info("PUSH EXECUTE!!!");
 		HttpResponseEntity resResult = new HttpResponseEntity();
 		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
@@ -65,8 +64,7 @@ public class PushTestController {
 					httpStatusDomain=pushService.apnsPush(pushDomain);
 					break;
 				case "android" : 
-					logger.info("asdfasfsadfasdfsadfasdf");
-					pushService.fcmPushTest(pushDomain);
+					httpStatusDomain=pushService.fcmPush(pushDomain);
 					break;
 			}
 			int result_code = httpStatusDomain.getCode();
@@ -97,7 +95,18 @@ public class PushTestController {
 			
 			//예외 발생 시 500 interval server error
 			logger.info("PUSH FAIL 500 error : "+e.toString());
+			e.printStackTrace();
 			return resResult.httpResponse("PUSH FAIL",500,e.toString());
 		}
+	}
+	
+	@RequestMapping(value = "/nexus/multiPush/test" , method = RequestMethod.POST)
+	public ResponseEntity<HttpStatusDomain> multiPush(@RequestBody PushDomain pushDomain, HttpServletRequest request, HttpServletResponse res) throws Exception{
+		logger.info("MULTI PUSH EXECUTE!!!");
+		HttpResponseEntity resResult = new HttpResponseEntity();
+		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
+		pushService.fcmPush(pushDomain);
+
+		return resResult.httpResponse("PUSH SUCCESS",200,"");
 	}
 }

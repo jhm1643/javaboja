@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import com.google.api.client.auth.oauth2.TokenRequest;
@@ -55,9 +56,9 @@ public class fcmApnsTokenHandler{
 	
 		try {
 			logger.info("FCM TOKEN MAKE START !!!!!");
-			String keyRealPath = servletContext.getRealPath(pushDomain.getKey_path())+"/"+pushDomain.getKeyFile_name();
+			String keyRealPath = "resources/"+pushDomain.getKeyFile_name();
 			GoogleCredential googleCredential = GoogleCredential
-				      .fromStream(new FileInputStream(keyRealPath))
+				      .fromStream(new FileInputStream(new ClassPathResource(pushDomain.getKeyFile_name()).getFile()))
 				      .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging", 
 				    		  "https://www.googleapis.com/auth/cloud-platform"));
 			googleCredential.refreshToken();

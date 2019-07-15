@@ -19,6 +19,8 @@ import io.netty.handler.ssl.SupportedCipherSuiteFilter;
 import io.netty.util.AsciiString;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.MediaType;
@@ -27,20 +29,34 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.TlsVersion;
+import okio.Buffer;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
+import org.apache.coyote.http2.Http2AsyncUpgradeHandler;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.Async;
 
 import com.google.firebase.messaging.Message;
 import com.google.gson.JsonObject;
@@ -62,6 +78,7 @@ public final class HttpClient{
 
 	@Autowired
 	Environment env;
+	
 	
 	//연결 실패 시 재시도 횟수
 	private int tryCount=0;
@@ -163,6 +180,46 @@ public final class HttpClient{
         return new HttpStatusDomain(responseHandler.getResponse_status(), responseHandler.getResponse_message());
     }
 	
+	
+	public void httpMultiStart(PushDomain pushDomain) throws InterruptedException{
+		HttpClientAsync hca = new HttpClientAsync();
+		OkHttpClient client = new OkHttpClient.Builder()
+    			//	.connectionSpecs(specs)
+					.connectTimeout(60, TimeUnit.MINUTES)
+					.followRedirects(true)
+					.readTimeout(20, TimeUnit.MINUTES)
+					.retryOnConnectionFailure(false)
+					.writeTimeout(20, TimeUnit.MINUTES)
+					.connectionPool(new ConnectionPool(5, 1, TimeUnit.SECONDS))
+					.build();
+		Map<String, Integer> map = new HashMap<>();
+		map.put("success",0);
+		map.put("fail", 0);
+		try {
+			logger.info("시작");	
+			long afterTime = 0;
+			long secDiffTime = 0;
+			long beforeTime = System.currentTimeMillis();
+			//argument 값에 사용자 count를 넣으면 됨
+			CountDownLatch cdl = new CountDownLatch(3000);
+			for(int i=0;i<3000;i++) {
+				hca.httpClientAsync(client, pushDomain, i, cdl, map);	
+			}
+			logger.info("종료");
+			logger.info("실행 시간 : "+secDiffTime);
+			afterTime = System.currentTimeMillis(); 
+			secDiffTime = (afterTime - beforeTime)/1000;
+			cdl.await();
+			for(String key:map.keySet()) {
+				logger.info(key+" : "+map.get(key));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	public HttpStatusDomain httpStart(PushDomain pushDomain) throws Exception{	
 		logger.info("PUSH HTTPclient START !!!!!");
     	logger.info("PUSH HTTPclient DEVICE TYPE : {}",pushDomain.getDevice());
@@ -204,6 +261,8 @@ public final class HttpClient{
 	        	Thread.sleep(1000);
 	        	client.newCall(request).cancel();
 	        	httpStart(pushDomain);
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
 	        String response_message="";
 	        if(res.code()!=200) {

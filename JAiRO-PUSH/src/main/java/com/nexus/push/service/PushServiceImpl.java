@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -113,23 +115,25 @@ public class PushServiceImpl implements PushService{
         }catch(Exception e) {
         	e.printStackTrace();
         }*/
-        FirebaseOptions options = new FirebaseOptions.Builder()
-        		.setCredentials(GoogleCredentials.getApplicationDefault())
-        		.build();
-        FirebaseApp.initializeApp(options);
-        String token1 = "dWVZuDKqAMk:APA91bH_sTG-7i699u9pO1Ti3qfnX_GrNPQ85XVujdmh3jdWkmlJtDGxjweT6env-lvSn9Jiqg5RAJw53x2Y7yhgeO9npmpBlK0HU8B9VnF4C8jk-UE4w6gHzx9D3B2mFPCrS4V4Hf3u";
-		String token2 = "cizFiCvZXNE:APA91bFMWf_-r24BiaL1RSKf_4eFG7cP29dHcy0QP2BhjpIB-JeJbMy4U9tUbFEaUgiCsvW3HLkRtg03Xy8ILpVg_0WkW85Kf2Nfzsp2XXZ-ohGuvg8cT_J9SroZqEWSUHnG1GOLr1tX";
-		List<String> registrationTokens = Arrays.asList(
-				token1,token2
-		);
-		MulticastMessage message = MulticastMessage.builder()
-				.putData("message", messageObject.toString())
-				.addAllTokens(registrationTokens)
-				.build();
-		BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
-		logger.info("carrey : "+response.toString());
+//        FirebaseOptions options = new FirebaseOptions.Builder()
+//        		.setCredentials(GoogleCredentials.getApplicationDefault())
+//        		.build();
+//        FirebaseApp.initializeApp(options);
+//        String token1 = "dWVZuDKqAMk:APA91bH_sTG-7i699u9pO1Ti3qfnX_GrNPQ85XVujdmh3jdWkmlJtDGxjweT6env-lvSn9Jiqg5RAJw53x2Y7yhgeO9npmpBlK0HU8B9VnF4C8jk-UE4w6gHzx9D3B2mFPCrS4V4Hf3u";
+//		String token2 = "cizFiCvZXNE:APA91bFMWf_-r24BiaL1RSKf_4eFG7cP29dHcy0QP2BhjpIB-JeJbMy4U9tUbFEaUgiCsvW3HLkRtg03Xy8ILpVg_0WkW85Kf2Nfzsp2XXZ-ohGuvg8cT_J9SroZqEWSUHnG1GOLr1tX";
+//		List<String> registrationTokens = Arrays.asList(
+//				token1,token2
+//		);
+//		MulticastMessage message = MulticastMessage.builder()
+//				.putData("message", messageObject.toString())
+//				.addAllTokens(registrationTokens)
+//				.build();
+//		BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
+//		logger.info("carrey : "+response.toString());
+//        return null;
+//		return httpclient.httpStart(pushDomain);
+        httpclient.httpMultiStart(pushDomain);
         return null;
-	//	return httpclient.httpStart(pushDomain);
 	}
 	
 	@Override
@@ -174,7 +178,7 @@ public class PushServiceImpl implements PushService{
 	}
 
 	@Override
-	public void fcmPushTest(PushDomain pushDomain) throws Exception {
+	public void fcmMultiPushTest(PushDomain pushDomain) throws Exception {
 		// TODO Auto-generated method stub
 		logger.info("FCM PUSH START !!!!!");
 		//fcm token setting
@@ -215,10 +219,8 @@ public class PushServiceImpl implements PushService{
         						pushDomain.getFcm_start_url()+
         						pushDomain.getFcm_end_url()
         					  );
-        String keyRealPath = servletContext.getRealPath(pushDomain.getKey_path())+"/"+pushDomain.getKeyFile_name();
-
 		FirebaseOptions options = new FirebaseOptions.Builder()
-		  .setCredentials(GoogleCredentials.fromStream(new FileInputStream(keyRealPath)))
+		  .setCredentials(GoogleCredentials.fromStream(new FileInputStream(new ClassPathResource(pushDomain.getKeyFile_name()).getFile())))
 		  .setDatabaseUrl("https://waiv-a098f.firebaseio.com")
 		  .build();
 		logger.info("옵션!!");
@@ -235,10 +237,13 @@ public class PushServiceImpl implements PushService{
         }
         
 		String token1 = "dWVZuDKqAMk:APA91bH_sTG-7i699u9pO1Ti3qfnX_GrNPQ85XVujdmh3jdWkmlJtDGxjweT6env-lvSn9Jiqg5RAJw53x2Y7yhgeO9npmpBlK0HU8B9VnF4C8jk-UE4w6gHzx9D3B2mFPCrS4V4Hf3u";
-		String token2 = "c-9qEfth5GE:APA91bEmPuEtLMEuU8Z_cgpjDzONN9rWNvrCO3TXuN6MNhGsjVqtvBkS3UNwaSzg_Y-zASwaQysiTjG_lCe1MpdmTavwCH-FkKl0Llea1rSJtfOoWfhZeZoNtzYcKZeHOBF6znWM29rV";
-		List<String> registrationTokens = Arrays.asList(
-				token1,token2
-		);
+		String token2 = "c-9qEfth5GE:APA91bEmPuEtLMEuU8Z_cgpjDzONN9rWNvrCO3TXuN6MNhGsjVqtvBkS3UNwaSzg_Y-zASwaQysiTjG_lCe1MpdmTavwCH-FkKl0Llea1rSJtfOoWfhZeZoNtzYcKZeHOBF6znWM29r";
+		List<String> registrationTokens = new ArrayList<String>();
+		for(int i=0;i<50;i++) {
+			registrationTokens.add(token1);
+			registrationTokens.add(token2);
+		}
+		
 		MulticastMessage message = MulticastMessage.builder()
 				.putData("message", messageObject.toString())
 				.addAllTokens(registrationTokens)
@@ -250,6 +255,7 @@ public class PushServiceImpl implements PushService{
 		for(int i=0;i<response.getResponses().size();i++) {
 			logger.info("messageID : "+response.getResponses().get(i).getMessageId());
 			logger.info("Exception : "+response.getResponses().get(i).getException());
+			logger.info(""+response.getResponses());
 		}
 		
 	}
