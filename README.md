@@ -1,7 +1,7 @@
 # javaboja
 jar 파일 url : https://github.com/jhm1643/javaboja/blob/master/javaboja_jpa_security.jar
 
-사용 라이브러리 : okhttp, json-simple, lombok
+사용 라이브러리 : okhttp(httpClient 메소드 사용), json-simple(json 파싱), lombok(lombok 어노테이션 사용)
 
 프로젝트 로그인 url : http://[IP]:8080/login
 
