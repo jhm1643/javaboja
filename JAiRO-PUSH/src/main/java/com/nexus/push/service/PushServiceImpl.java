@@ -32,6 +32,7 @@ import com.google.firebase.messaging.MulticastMessage;
 import com.nexus.push.domain.HttpStatusDomain;
 import com.nexus.push.domain.PushDomain;
 import com.nexus.push.httpClient.HttpClient;
+import com.nexus.push.util.ThreadTest;
 import com.nexus.push.util.fcmApnsTokenHandler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,11 @@ public class PushServiceImpl implements PushService{
 	@Autowired
 	ServletContext servletContext;
 
+	@Autowired
+	private HttpClient httpclient;
+	
+	@Autowired
+	private ThreadTest tt;
 	/*@Bean("ApnsFile")
 	public File getApnsKeyFile() throws Exception{
 		File getApnsKeyFile = new File(servletContext.getRealPath(env.getProperty("apns.keyPath")+"/"+env.getProperty("apns.p8.fileName")));
@@ -65,7 +71,7 @@ public class PushServiceImpl implements PushService{
 		pushDomain.setApns_keyFile(new File(servletContext.getRealPath(env.getProperty("apns.keyPath")+"/"+env.getProperty("apns.p8.fileName"))));
 		return pushDomain;
 	}*/
-	HttpClient httpclient = new HttpClient();
+	//HttpClient httpclient = new HttpClient();
 	fcmApnsTokenHandler tokenHandler = new fcmApnsTokenHandler();
 	
 	@Override
@@ -176,6 +182,47 @@ public class PushServiceImpl implements PushService{
         
 		return httpclient.http2Start(pushDomain);
 	}
+	
+	@Override
+	public void apnsMultiPushTest(PushDomain pushDomain) throws Exception{
+		logger.info("APNS PUSH START !!!!!");
+		//apns token setting
+		pushDomain.setKey_id(env.getProperty("apns.keyId"));
+		pushDomain.setTeam_id(env.getProperty("apns.teamId"));
+		pushDomain.setKey_path(env.getProperty("apns.keyPath"));
+		pushDomain.setKeyFile_name(env.getProperty("apns.p8.fileName"));
+	//	pushDomain.setApns_keyFile(apnsKeyFile);
+		tokenHandler.apnsTokenSet(pushDomain, servletContext);
+		
+		//apns POST data setting
+		logger.info("APNS PUSH DATA MAKE START !!!!!");
+		JSONObject apsObject = new JSONObject();
+		//JSONObject alertObject = new JSONObject();
+		JSONObject dataObject = new JSONObject();
+		dataObject.put("menu", pushDomain.getMenu());
+		dataObject.put("id", pushDomain.getId());
+		dataObject.put("group_id", pushDomain.getGroup_id());
+		dataObject.put("mode", pushDomain.getMode());
+		dataObject.put("title", pushDomain.getTitle());
+		dataObject.put("from_id", pushDomain.getFrom());
+		dataObject.put("message", pushDomain.getMessage());
+		//alertObject.put("alert", dataObject);
+		apsObject.put("aps", dataObject);
+		logger.info("APNS PUSH DATA : {}",apsObject.toString());
+        pushDomain.setPost_data(apsObject.toString());
+        logger.info("APNS PUSH DATA MAKE END !!!!!");
+        
+        //apns topic setting
+        pushDomain.setApns_topic(env.getProperty("apns.topic"));
+        
+        //apns url setting
+        pushDomain.setApns_start_url(env.getProperty("apns.start.url"));
+        pushDomain.setApns_end_url(env.getProperty("apns.end.url"));
+        pushDomain.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
+        pushDomain.setRequest_type(env.getProperty("apns.req.type"));
+        
+		httpclient.http2MultiStart(pushDomain);
+	}
 
 	@Override
 	public void fcmMultiPushTest(PushDomain pushDomain) throws Exception {
@@ -258,6 +305,13 @@ public class PushServiceImpl implements PushService{
 			logger.info(""+response.getResponses());
 		}
 		
+	}
+	
+	public void threadService() {
+		//ThreadTest tt = new ThreadTest();
+		for(int i=0;i<100;i++) {
+			tt.threadStart(i);
+		}
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import com.google.api.client.auth.oauth2.TokenRequest;
@@ -56,9 +59,11 @@ public class fcmApnsTokenHandler{
 	
 		try {
 			logger.info("FCM TOKEN MAKE START !!!!!");
+			Resource resource = new ClassPathResource(pushDomain.getKeyFile_name());
+			InputStream is = resource.getInputStream();
 			String keyRealPath = "resources/"+pushDomain.getKeyFile_name();
 			GoogleCredential googleCredential = GoogleCredential
-				      .fromStream(new FileInputStream(new ClassPathResource(pushDomain.getKeyFile_name()).getFile()))
+				      .fromStream(is)
 				      .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging", 
 				    		  "https://www.googleapis.com/auth/cloud-platform"));
 			googleCredential.refreshToken();
@@ -90,11 +95,15 @@ public class fcmApnsTokenHandler{
         String part1 = base64_header + "." + base64_payload;
         String token="";
         BufferedReader br = null;
+        InputStreamReader isr = null;
         String secret="";
         try {
             String currentLine;
-            File file=new File(keyRealPath);
-            br = new BufferedReader(new FileReader(file));
+            Resource resource = new ClassPathResource(pushDomain.getKeyFile_name());
+			InputStream is = resource.getInputStream();
+            isr = new InputStreamReader(is);
+			File file=new File(keyRealPath);
+            br = new BufferedReader(isr);
             while ((currentLine = br.readLine()) != null) {
             	if(currentLine.contains("BEGIN PRIVATE KEY") || currentLine.contains("END PRIVATE KEY")) {
             		continue;

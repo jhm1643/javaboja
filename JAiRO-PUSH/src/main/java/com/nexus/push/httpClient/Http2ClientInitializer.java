@@ -28,6 +28,7 @@ import io.netty.handler.codec.http2.DefaultHttp2Connection;
 import io.netty.handler.codec.http2.DelegatingDecompressorFrameListener;
 import io.netty.handler.codec.http2.Http2ClientUpgradeCodec;
 import io.netty.handler.codec.http2.Http2Connection;
+import io.netty.handler.codec.http2.Http2FrameAdapter;
 import io.netty.handler.codec.http2.HttpToHttp2ConnectionHandler;
 import io.netty.handler.codec.http2.HttpToHttp2ConnectionHandlerBuilder;
 import io.netty.handler.codec.http2.InboundHttp2ToHttpAdapterBuilder;
@@ -58,6 +59,7 @@ public class Http2ClientInitializer extends ChannelInitializer<SocketChannel>{
 
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
+    	final Http2FrameAdapter adapter = new Http2FrameAdapter();
         final Http2Connection connection = new DefaultHttp2Connection(false);
     //  final Http2FrameWriter frameWriter = frameWriter();
         connectionHandler = new HttpToHttp2ConnectionHandlerBuilder()
@@ -98,7 +100,7 @@ public class Http2ClientInitializer extends ChannelInitializer<SocketChannel>{
     private void configureSsl(SocketChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
         SslHandler handler = sslCtx.newHandler(ch.alloc());
-        //TLS 1.2v ê°•ì œ ?…‹?Œ…, ?•˜?œ„ ë²„ì „ ?‚¬?š©?•´?•¼ ?•  ê²½ìš° ?•„?˜ ì½”ë“œ ? œê±?
+        //TLS 1.2v ê°•ì œ ?ï¿½ï¿½?ï¿½ï¿½, ?ï¿½ï¿½?ï¿½ï¿½ ë²„ì „ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ê²½ìš° ?ï¿½ï¿½?ï¿½ï¿½ ì½”ë“œ ?ï¿½ï¿½ï¿½?
         //handler.engine().setEnabledProtocols(new String[] {"TLSv1.2"});
         pipeline.addLast(handler);
         // We must wait for the handshake to finish and the protocol to be negotiated before configuring
@@ -106,7 +108,7 @@ public class Http2ClientInitializer extends ChannelInitializer<SocketChannel>{
         pipeline.addLast(new ApplicationProtocolNegotiationHandler("") {
             @Override
             protected void configurePipeline(ChannelHandlerContext ctx, String protocol) {
-                //http2ë°©ì‹ë§? ?‚¬?š©
+                //http2ë°©ì‹ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
             	protocol="h2";
             	if (ApplicationProtocolNames.HTTP_2.equals(protocol)) {
                     ChannelPipeline p = ctx.pipeline();

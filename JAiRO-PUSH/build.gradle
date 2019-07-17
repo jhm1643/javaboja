@@ -33,7 +33,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.google.firebase/firebase-admin
 	compile group: 'com.google.firebase', name: 'firebase-admin', version: '6.8.1'
 	// https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-	compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.12.0'
+	//compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.12.0'
 	// https://mvnrepository.com/artifact/com.auth0/java-jwt
 	compile group: 'com.auth0', name: 'java-jwt', version: '3.4.1'
 	// https://mvnrepository.com/artifact/io.netty/netty-all
@@ -44,4 +44,9 @@ dependencies {
 	compile group: 'org.json', name: 'json', version: '20180813'
 	// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpasyncclient
 	compile group: 'org.apache.httpcomponents', name: 'httpasyncclient', version: '4.1.4'
+	// https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+	compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.0.1'
+	// https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util
+	compile group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.4.19.v20190610'
+
 }

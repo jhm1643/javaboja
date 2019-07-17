@@ -18,6 +18,7 @@ import com.google.firebase.messaging.MulticastMessage;
 import com.nexus.push.domain.HttpStatusDomain;
 import com.nexus.push.domain.PushDomain;
 import com.nexus.push.httpClient.HttpResponseEntity;
+import com.nexus.push.service.PushService;
 import com.nexus.push.service.PushServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +28,28 @@ import lombok.extern.slf4j.Slf4j;
 public class PushTestController {
 	
 	@Autowired
-	private PushServiceImpl pushService;
+	private PushService pushService;
 	
 	static final String CODE_400_DATA_ERROR="Received data is null";
 	static final String CODE_400_DEVICE_ERROR="Device name is android or ios";
 	static final String CODE_400_TOKEN_ERROR="Token value is empty";
 
+	
+	@RequestMapping(value = "/nexus/multiPush/test" , method = RequestMethod.POST)
+	public ResponseEntity<HttpStatusDomain> multiPush(@RequestBody PushDomain pushDomain, HttpServletRequest request, HttpServletResponse res) throws Exception{
+		logger.info("MULTI PUSH EXECUTE!!!");
+		HttpResponseEntity resResult = new HttpResponseEntity();
+		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
+		if(pushDomain.getDevice().equals("ios")) {
+			pushService.apnsMultiPushTest(pushDomain);
+		}else if(pushDomain.getDevice().equals("android")) {
+			pushService.fcmPush(pushDomain);
+		}
+		
+
+		return resResult.httpResponse("PUSH SUCCESS",200,"");
+	}
+	
 	@RequestMapping(value = "/nexus/push/test" , method = RequestMethod.POST)
 	public ResponseEntity<HttpStatusDomain> push(@RequestBody PushDomain pushDomain,HttpServletRequest request, HttpServletResponse res){
 		logger.info("PUSH EXECUTE!!!");
@@ -100,13 +117,5 @@ public class PushTestController {
 		}
 	}
 	
-	@RequestMapping(value = "/nexus/multiPush/test" , method = RequestMethod.POST)
-	public ResponseEntity<HttpStatusDomain> multiPush(@RequestBody PushDomain pushDomain, HttpServletRequest request, HttpServletResponse res) throws Exception{
-		logger.info("MULTI PUSH EXECUTE!!!");
-		HttpResponseEntity resResult = new HttpResponseEntity();
-		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
-		pushService.fcmPush(pushDomain);
-
-		return resResult.httpResponse("PUSH SUCCESS",200,"");
-	}
+	
 }
