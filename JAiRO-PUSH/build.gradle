@@ -48,5 +48,7 @@ dependencies {
 	compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.0.1'
 	// https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util
 	compile group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.4.19.v20190610'
+	// https://mvnrepository.com/artifact/org.conscrypt/conscrypt-openjdk-uber
+	compile group: 'org.conscrypt', name: 'conscrypt-openjdk-uber', version: '2.1.0'
 
 }
