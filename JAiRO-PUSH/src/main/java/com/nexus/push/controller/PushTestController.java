@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.firebase.messaging.MulticastMessage;
-import com.nexus.push.domain.HttpStatusDomain;
-import com.nexus.push.domain.PushDomain;
-import com.nexus.push.httpClient.HttpResponseEntity;
+import com.nexus.push.domain.HttpResponseEntity;
+import com.nexus.push.domain.PushResult;
+import com.nexus.push.domain.PushRequestObject;
 import com.nexus.push.service.PushService;
 import com.nexus.push.service.PushServiceImpl;
 
@@ -36,10 +36,10 @@ public class PushTestController {
 
 	
 	@RequestMapping(value = "/nexus/multiPush/test" , method = RequestMethod.POST)
-	public ResponseEntity<HttpStatusDomain> multiPush(@RequestBody PushDomain pushDomain, HttpServletRequest request, HttpServletResponse res) throws Exception{
+	public ResponseEntity<PushResult> multiPush(@RequestBody PushRequestObject pushDomain, HttpServletRequest request, HttpServletResponse res) throws Exception{
 		logger.info("MULTI PUSH EXECUTE!!!");
 		HttpResponseEntity resResult = new HttpResponseEntity();
-		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
+		PushResult httpStatusDomain= new PushResult();
 		if(pushDomain.getDevice().equals("ios")) {
 			pushService.apnsMultiPushTest(pushDomain);
 		}else if(pushDomain.getDevice().equals("android")) {
@@ -51,10 +51,10 @@ public class PushTestController {
 	}
 	
 	@RequestMapping(value = "/nexus/push/test" , method = RequestMethod.POST)
-	public ResponseEntity<HttpStatusDomain> push(@RequestBody PushDomain pushDomain,HttpServletRequest request, HttpServletResponse res){
+	public ResponseEntity<PushResult> push(@RequestBody PushRequestObject pushDomain,HttpServletRequest request, HttpServletResponse res){
 		logger.info("PUSH EXECUTE!!!");
 		HttpResponseEntity resResult = new HttpResponseEntity();
-		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
+		PushResult httpStatusDomain= new PushResult();
 		try{
 			//NO DATA
 			if(pushDomain==null) {

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nexus.push.domain.HttpStatusDomain;
-import com.nexus.push.domain.PushDomain;
-import com.nexus.push.httpClient.HttpResponseEntity;
+import com.nexus.push.domain.HttpResponseEntity;
+import com.nexus.push.domain.PushResult;
+import com.nexus.push.domain.PushRequestObject;
 import com.nexus.push.service.PushServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,10 +31,10 @@ public class PushController {
 	static final String CODE_400_TOKEN_ERROR="Token value is empty";
 
 	@RequestMapping(value = "/nexus/push" , method = RequestMethod.POST)
-	public ResponseEntity<HttpStatusDomain> push(@RequestBody PushDomain pushDomain,HttpServletRequest request, HttpServletResponse res){
+	public ResponseEntity<PushResult> push(@RequestBody PushRequestObject pushDomain,HttpServletRequest request, HttpServletResponse res){
 		logger.info("PUSH EXECUTE!!!");
 		HttpResponseEntity resResult = new HttpResponseEntity();
-		HttpStatusDomain httpStatusDomain= new HttpStatusDomain();
+		PushResult httpStatusDomain= new PushResult();
 		try{
 			//NO DATA
 			if(pushDomain==null) {
@@ -91,5 +91,13 @@ public class PushController {
 			logger.info("PUSH FAIL 500 error : "+e.toString());
 			return resResult.httpResponse("PUSH FAIL",500,e.toString());
 		}
+		
+		
+	}
+	
+	@RequestMapping(value = "/nexus/push" , method = RequestMethod.POST)
+	public ResponseEntity<PushResult> push2(@RequestBody PushRequestObject pushDomain,HttpServletRequest request, HttpServletResponse res){
+		return pushService.push(pushDomain);
+		
 	}
 }

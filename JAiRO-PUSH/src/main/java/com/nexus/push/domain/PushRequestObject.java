@@ -3,11 +3,12 @@ package com.nexus.push.domain;
 import java.io.File;
 
 import org.json.JSONObject;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
-public class PushDomain {
+@Getter
+@Setter
+public class PushRequestObject {
 	
 	//fcm domain
 	private String fcm_start_url;

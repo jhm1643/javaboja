@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,10 +30,11 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.BatchResponse;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.MulticastMessage;
-import com.nexus.push.domain.HttpStatusDomain;
-import com.nexus.push.domain.PushDomain;
+import com.nexus.push.domain.ErrorCode;
+import com.nexus.push.domain.HttpResponseEntity;
+import com.nexus.push.domain.PushResult;
+import com.nexus.push.domain.PushRequestObject;
 import com.nexus.push.httpClient.HttpClient;
-import com.nexus.push.util.ThreadTest;
 import com.nexus.push.util.fcmApnsTokenHandler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -50,32 +52,11 @@ public class PushServiceImpl implements PushService{
 
 	@Autowired
 	private HttpClient httpclient;
-	
-	@Autowired
-	private ThreadTest tt;
-	/*@Bean("ApnsFile")
-	public File getApnsKeyFile() throws Exception{
-		File getApnsKeyFile = new File(servletContext.getRealPath(env.getProperty("apns.keyPath")+"/"+env.getProperty("apns.p8.fileName")));
-		return getApnsKeyFile;	
-	}*/
-	
-	/*private File apnsKeyFile;
-	
-	@PostConstruct
-	public void getApnsKeyFile() throws Exception{
-		apnsKeyFile = new File(servletContext.getRealPath(env.getProperty("apns.keyPath")+"/"+env.getProperty("apns.p8.fileName")));
-	}*/
-	/*@Bean
-	public PushDomain getApnsKeyFile() {
-		PushDomain pushDomain = new PushDomain();
-		pushDomain.setApns_keyFile(new File(servletContext.getRealPath(env.getProperty("apns.keyPath")+"/"+env.getProperty("apns.p8.fileName"))));
-		return pushDomain;
-	}*/
-	//HttpClient httpclient = new HttpClient();
+
 	fcmApnsTokenHandler tokenHandler = new fcmApnsTokenHandler();
 	
 	@Override
-	public HttpStatusDomain fcmPush(PushDomain pushDomain) throws Exception{
+	public PushResult fcmPush(PushRequestObject pushDomain) throws Exception{
 		logger.info("FCM PUSH START !!!!!");
 		//fcm token setting
 		pushDomain.setKey_path(env.getProperty("fcm.keyPath"));
@@ -143,7 +124,7 @@ public class PushServiceImpl implements PushService{
 	}
 	
 	@Override
-	public HttpStatusDomain apnsPush(PushDomain pushDomain) throws Exception{
+	public PushResult apnsPush(PushRequestObject pushDomain) throws Exception{
 		logger.info("APNS PUSH START !!!!!");
 		//apns token setting
 		pushDomain.setKey_id(env.getProperty("apns.keyId"));
@@ -180,11 +161,12 @@ public class PushServiceImpl implements PushService{
         pushDomain.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
         pushDomain.setRequest_type(env.getProperty("apns.req.type"));
         
-		return httpclient.http2Start(pushDomain);
+        return null;
+	//	return httpclient.http2Start(pushDomain);
 	}
 	
 	@Override
-	public void apnsMultiPushTest(PushDomain pushDomain) throws Exception{
+	public void apnsMultiPushTest(PushRequestObject pushDomain) throws Exception{
 		logger.info("APNS PUSH START !!!!!");
 		//apns token setting
 		pushDomain.setKey_id(env.getProperty("apns.keyId"));
@@ -225,7 +207,7 @@ public class PushServiceImpl implements PushService{
 	}
 
 	@Override
-	public void fcmMultiPushTest(PushDomain pushDomain) throws Exception {
+	public void fcmMultiPushTest(PushRequestObject pushDomain) throws Exception {
 		// TODO Auto-generated method stub
 		logger.info("FCM PUSH START !!!!!");
 		//fcm token setting
@@ -306,11 +288,69 @@ public class PushServiceImpl implements PushService{
 		}
 		
 	}
-	
-	public void threadService() {
-		//ThreadTest tt = new ThreadTest();
-		for(int i=0;i<100;i++) {
-			tt.threadStart(i);
+
+	@Override
+	public ResponseEntity<PushResult> push(PushRequestObject pushDomain) {
+		logger.info("PUSH EXECUTE!!!");
+		HttpResponseEntity resResult = new HttpResponseEntity();
+		PushResult httpStatusDomain= new PushResult();
+		try{
+			
+			/* Basic Data Check */
+			//NO DATA
+			if(pushDomain==null) {
+				logger.info("PUSH FAIL 400 error : "+ErrorCode.CODE_400_DATA_ERROR);
+				return resResult.httpResponse("PUSH FAIL",400, ErrorCode.CODE_400_DATA_ERROR);
+			}
+			//NO DEVICE
+			else if(pushDomain.getDevice()==null || pushDomain.getDevice().equals("")){
+				logger.info("PUSH FAIL 400 error : "+ErrorCode.CODE_400_DEVICE_ERROR);
+				return resResult.httpResponse("PUSH FAIL",400,ErrorCode.CODE_400_DEVICE_ERROR);
+			}else if(!(pushDomain.getDevice().equals("ios") || pushDomain.getDevice().equals("android"))){
+				logger.info("PUSH FAIL 400 error : "+ErrorCode.CODE_400_DEVICE_ERROR);
+				return resResult.httpResponse("PUSH FAIL",400,ErrorCode.CODE_400_DEVICE_ERROR);
+			}
+			//NO DEVICE TOKEN
+			else if(pushDomain.getDevice_token()==null || pushDomain.getDevice_token().equals("")) {
+				logger.info("PUSH FAIL 400 error : "+ErrorCode.CODE_400_TOKEN_ERROR);
+				return resResult.httpResponse("PUSH FAIL",400,ErrorCode.CODE_400_TOKEN_ERROR);
+			}
+			
+			/* Push Start */
+			switch(pushDomain.getDevice()) {
+				case "ios" : 
+					//httpStatusDomain=pushService.apnsPush(pushDomain);
+					break;
+				case "android" : 
+				//	httpStatusDomain=pushService.fcmPush(pushDomain);
+					break;
+			}
+			int result_code = httpStatusDomain.getCode();
+			String error_message = httpStatusDomain.getErrorMessage();
+			
+			//status code가 200으로 return될 경우 PUSH SUCCESS
+			if(result_code==200) {
+				logger.info("PUSH SUCCESS");
+				return resResult.httpResponse("PUSH SUCCESS",200,"");
+			
+			//잘못된 디바이스 토큰이라는 메세지가 리턴된 경우 400 request error
+			}else if(error_message.equals("BadDeviceToken")){
+				logger.info("PUSH FAIL 400 error : "+httpStatusDomain.getErrorMessage());
+				return resResult.httpResponse("PUSH FAIL",400,httpStatusDomain.getErrorMessage());
+			}else if(error_message.equals("The registration token is not a valid FCM registration token")){
+				logger.info("PUSH FAIL 400 error : "+httpStatusDomain.getErrorMessage());
+				return resResult.httpResponse("PUSH FAIL",400,httpStatusDomain.getErrorMessage());
+			
+			//그외의 케이스인 경우 500 interval server error
+			}else{
+				logger.info("PUSH FAIL 500 error : "+httpStatusDomain.getErrorMessage());
+				return resResult.httpResponse("PUSH FAIL",500,httpStatusDomain.getErrorMessage());
+			}
+		}catch(Exception e) {
+			
+			//예외 발생 시 500 interval server error
+			logger.info("PUSH FAIL 500 error : "+e.toString());
+			return resResult.httpResponse("PUSH FAIL",500,e.toString());
 		}
 	}
 	

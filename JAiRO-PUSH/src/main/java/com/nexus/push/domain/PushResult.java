@@ -1,21 +1,23 @@
 package com.nexus.push.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class HttpStatusDomain {
+@Getter
+@Setter
+public class PushResult {
 	
 	private int code;
 	private String message;
 	private String errorMessage;
 	
 
-	public HttpStatusDomain() {};
-	public HttpStatusDomain(int code, String errorMessage) {
+	public PushResult() {};
+	public PushResult(int code, String errorMessage) {
 		this.setCode(code);
 		this.setErrorMessage(errorMessage);
 	}
-	public HttpStatusDomain(String message, int code, String errorMessage) {
+	public PushResult(String message, int code, String errorMessage) {
 		this.setMessage(message);
 		this.setCode(code);
 		this.setErrorMessage(errorMessage);

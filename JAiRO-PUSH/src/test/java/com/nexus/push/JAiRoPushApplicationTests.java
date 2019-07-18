@@ -5,18 +5,16 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.nexus.push.util.ThreadTest;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JAiRoPushApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		ThreadTest tt = new ThreadTest();
-		for(int i=0;i<10;i++) {
-			tt.threadStart(i);
-		}
+//		ThreadTest tt = new ThreadTest();
+//		for(int i=0;i<10;i++) {
+//			tt.threadStart(i);
+//		}
 	}
 
 }

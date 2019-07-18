@@ -1,15 +1,16 @@
 package com.nexus.push.service;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.nexus.push.domain.HttpStatusDomain;
-import com.nexus.push.domain.PushDomain;
+import com.nexus.push.domain.PushResult;
+import com.nexus.push.domain.PushRequestObject;
 
 @Service
 public interface PushService {
-	public HttpStatusDomain fcmPush(PushDomain pushDomain) throws Exception;
-	public HttpStatusDomain apnsPush(PushDomain pushDomain) throws Exception;
-	public void fcmMultiPushTest(PushDomain pushDomain) throws Exception;
-	public void apnsMultiPushTest(PushDomain pushDomain) throws Exception;
-	public void threadService();
+	public ResponseEntity<PushResult> push(PushRequestObject pushDomain);
+	public PushResult fcmPush(PushRequestObject pushDomain) throws Exception;
+	public PushResult apnsPush(PushRequestObject pushDomain) throws Exception;
+	public void fcmMultiPushTest(PushRequestObject pushDomain) throws Exception;
+	public void apnsMultiPushTest(PushRequestObject pushDomain) throws Exception;
 }

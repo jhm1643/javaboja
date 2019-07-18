@@ -43,7 +43,7 @@ import com.google.api.client.json.webtoken.JsonWebSignature;
 import com.google.api.client.json.webtoken.JsonWebToken;
 import com.google.api.client.util.Beta;
 import com.google.api.client.util.Joiner;
-import com.nexus.push.domain.PushDomain;
+import com.nexus.push.domain.PushRequestObject;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,7 +55,7 @@ public class fcmApnsTokenHandler{
 	//private int fcmTokenSet_retry = 5;
 	private int fcmTokenSet_tryCount=0;
 	
-	public void fcmTokenSet(PushDomain pushDomain, ServletContext servletContext) throws IOException, InterruptedException{
+	public void fcmTokenSet(PushRequestObject pushDomain, ServletContext servletContext) throws IOException, InterruptedException{
 	
 		try {
 			logger.info("FCM TOKEN MAKE START !!!!!");
@@ -83,7 +83,7 @@ public class fcmApnsTokenHandler{
 	}
 	
 	//APNS p8 토큰 인증 방식
-	public void apnsTokenSet(PushDomain pushDomain, ServletContext servletContext) {
+	public void apnsTokenSet(PushRequestObject pushDomain, ServletContext servletContext) {
 		logger.info("APNS TOKEN MAKE START !!!!!");
 		long nowMillis = System.currentTimeMillis()/1000;
 		String jwt_header	= String.format("{\"alg\" : \"ES256\" , \"kid\":\"%s\"}", pushDomain.getKey_id());

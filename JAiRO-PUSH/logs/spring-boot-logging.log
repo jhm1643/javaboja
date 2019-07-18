@@ -24288,3 +24288,30 @@ You may wish to exclude one of them to ensure predictable runtime behavior
 2019-07-18 11:32:39.306 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 8
 2019-07-18 11:32:39.306 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 9
 2019-07-18 11:32:39.324 [Thread-6] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'carrey'
+2019-07-18 14:01:12.769 [Test worker] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/D:/gradle/caches/modules-2/files-2.1/org.json/json/20180813/8566b2b0391d9d4479ea225645c6ed47ef17fe41/json-20180813.jar!/org/json/JSONObject.class
+	jar:file:/D:/gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-07-18 14:01:12.794 [Test worker] INFO  c.n.push.JAiRoPushApplicationTests - Starting JAiRoPushApplicationTests on DESKTOP-PFK81CQ with PID 19276 (started by carrey in C:\Users\carrey\git\javaboja\jairo_push\JAiRO-PUSH)
+2019-07-18 14:01:12.796 [Test worker] INFO  c.n.push.JAiRoPushApplicationTests - No active profile set, falling back to default profiles: default
+2019-07-18 14:01:13.261 [background-preinit] WARN  o.s.h.c.j.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-07-18 14:01:14.305 [Test worker] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'springAsyncConfig' of type [com.nexus.push.util.SpringAsyncConfig$$EnhancerBySpringCGLIB$$f25b4682] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-18 14:01:14.611 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
+2019-07-18 14:01:14.636 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'carrey'
+2019-07-18 14:01:16.527 [Test worker] INFO  c.n.push.JAiRoPushApplicationTests - Started JAiRoPushApplicationTests in 4.327 seconds (JVM running for 6.374)
+2019-07-18 14:01:16.939 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 0
+2019-07-18 14:01:16.939 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 1
+2019-07-18 14:01:16.939 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 2
+2019-07-18 14:01:16.940 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 3
+2019-07-18 14:01:16.940 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 4
+2019-07-18 14:01:16.940 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 5
+2019-07-18 14:01:16.940 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 6
+2019-07-18 14:01:16.940 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 7
+2019-07-18 14:01:16.941 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 8
+2019-07-18 14:01:16.941 [Test worker] INFO  com.nexus.push.util.ThreadTest - carrey : 9
+2019-07-18 14:01:16.955 [Thread-6] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'carrey'
