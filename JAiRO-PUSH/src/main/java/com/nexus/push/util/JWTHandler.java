@@ -43,25 +43,25 @@ import com.google.api.client.json.webtoken.JsonWebSignature;
 import com.google.api.client.json.webtoken.JsonWebToken;
 import com.google.api.client.util.Beta;
 import com.google.api.client.util.Joiner;
-import com.nexus.push.domain.PushRequestObject;
+import com.nexus.push.domain.HttpRequestVo;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class fcmApnsTokenHandler{
+@Component
+public class JWTHandler{
 
 
 	//HTTP v1 방식일 경우 해당 메소드를 통해 인증을 함
 	//private int fcmTokenSet_retry = 5;
 	private int fcmTokenSet_tryCount=0;
 	
-	public void fcmTokenSet(PushRequestObject pushDomain, ServletContext servletContext) throws IOException, InterruptedException{
+	public void fcmTokenSet(HttpRequestVo pushDomain) throws IOException, InterruptedException{
 	
 		try {
 			logger.info("FCM TOKEN MAKE START !!!!!");
 			Resource resource = new ClassPathResource(pushDomain.getKeyFile_name());
 			InputStream is = resource.getInputStream();
-			String keyRealPath = "resources/"+pushDomain.getKeyFile_name();
 			GoogleCredential googleCredential = GoogleCredential
 				      .fromStream(is)
 				      .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging", 
@@ -77,33 +77,30 @@ public class fcmApnsTokenHandler{
 				fcmTokenSet_tryCount++;
         		logger.info("Connection Fail Reason{}, TRY COUNT : {}",e.getMessage(),fcmTokenSet_tryCount);
         		Thread.sleep(3000);
-        		fcmTokenSet(pushDomain, servletContext);
+        		fcmTokenSet(pushDomain);
 		}
 		
 	}
 	
 	//APNS p8 토큰 인증 방식
-	public void apnsTokenSet(PushRequestObject pushDomain, ServletContext servletContext) {
+	public void apnsTokenSet(HttpRequestVo pushDomain) {
 		logger.info("APNS TOKEN MAKE START !!!!!");
 		long nowMillis = System.currentTimeMillis()/1000;
 		String jwt_header	= String.format("{\"alg\" : \"ES256\" , \"kid\":\"%s\"}", pushDomain.getKey_id());
 		String jwt_payload 	= String.format("{\"iss\" : \"%s\" , \"iat\":\"%s\"}", pushDomain.getTeam_id(), nowMillis) ;
-		String keyRealPath = servletContext.getRealPath(pushDomain.getKey_path())+"/"+pushDomain.getKeyFile_name();
 		String base64_header = new String(Base64.encodeBase64String(jwt_header.getBytes(StandardCharsets.UTF_8)));
         String base64_payload = new String(Base64.encodeBase64String(jwt_payload.getBytes(StandardCharsets.UTF_8)));
         
         String part1 = base64_header + "." + base64_payload;
-        String token="";
+        Resource resource = new ClassPathResource(pushDomain.getKeyFile_name());
+        InputStream is = null;
         BufferedReader br = null;
-        InputStreamReader isr = null;
+        String currentLine="";
         String secret="";
+        String token="";
         try {
-            String currentLine;
-            Resource resource = new ClassPathResource(pushDomain.getKeyFile_name());
-			InputStream is = resource.getInputStream();
-            isr = new InputStreamReader(is);
-			File file=new File(keyRealPath);
-            br = new BufferedReader(isr);
+			is = resource.getInputStream();
+            br = new BufferedReader(new InputStreamReader(is));
             while ((currentLine = br.readLine()) != null) {
             	if(currentLine.contains("BEGIN PRIVATE KEY") || currentLine.contains("END PRIVATE KEY")) {
             		continue;
