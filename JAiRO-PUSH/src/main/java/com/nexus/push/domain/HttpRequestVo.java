@@ -1,6 +1,8 @@
 package com.nexus.push.domain;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONObject;
 import lombok.Getter;
@@ -8,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PushRequestObject {
+public class HttpRequestVo {
 	
 	//fcm domain
 	private String fcm_start_url;
@@ -32,8 +34,9 @@ public class PushRequestObject {
 	private String title;
 	private String server_token;
 	private String message;
-	private String device;  // ios or android
+	private String device_type;  // ios or android
 	private String device_token;	// device token
+	private List<String> device_token_list;
 	private String post_data;
 	private String request_type;
 	private String key_path;
@@ -43,5 +46,5 @@ public class PushRequestObject {
 	private String group_id;
 	private String mode;
 	private String from;
-	
+	private String request_url;
 }

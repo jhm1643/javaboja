@@ -5,19 +5,19 @@ import org.springframework.http.ResponseEntity;
 
 public class HttpResponseEntity {
 	
-	public ResponseEntity<PushResult> httpResponse(String result, int code, String errorMessage){
-		PushResult hsd = new PushResult(result, code, errorMessage);
+	public ResponseEntity<HttpResponseVo> httpResponse(String result, int code, String errorMessage){
+		HttpResponseVo hsd = new HttpResponseVo(result, code, errorMessage);
 		HttpStatus hs=HttpStatus.valueOf(code);
-		ResponseEntity<PushResult> rese=new ResponseEntity<PushResult>(hsd, hs);
+		ResponseEntity<HttpResponseVo> rese=new ResponseEntity<HttpResponseVo>(hsd, hs);
 		return rese;
 	}
 	
-	public ResponseEntity<PushResult> httpResponse(String result, int code){
-		PushResult hsd = new PushResult(code, result);
-		HttpStatus hs=HttpStatus.valueOf(code);
-		ResponseEntity<PushResult> rese=new ResponseEntity<PushResult>(hsd, hs);
-		return rese;
-	}
+//	public ResponseEntity<HttpResponseVo> httpResponse(String result, int code){
+//		HttpResponseVo hsd = new HttpResponseVo(code, result);
+//		HttpStatus hs=HttpStatus.valueOf(code);
+//		ResponseEntity<HttpResponseVo> rese=new ResponseEntity<HttpResponseVo>(hsd, hs);
+//		return rese;
+//	}
 	
 	
 }
