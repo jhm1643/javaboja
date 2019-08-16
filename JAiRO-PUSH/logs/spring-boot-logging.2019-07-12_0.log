@@ -1,0 +1,326 @@
+2019-07-12 11:42:38.597 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 9156 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:42:38.600 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:42:38.656 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-07-12 11:42:38.656 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-07-12 11:42:39.788 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:42:39.804 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:42:39.814 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:42:39.814 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:42:39.934 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:42:39.935 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1277 ms
+2019-07-12 11:42:40.158 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:42:40.355 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:42:40.374 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:42:40.390 [restartedMain] ERROR o.apache.catalina.util.LifecycleBase - Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:263)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:195)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:296)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202)
+	at com.nexus.push.JAiRoPushApplication.main(JAiRoPushApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:433)
+	at java.base/sun.nio.ch.Net.bind(Net.java:425)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:230)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:213)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1124)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1210)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:585)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 19 common frames omitted
+2019-07-12 11:42:40.395 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:42:40.396 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2019-07-12 11:42:40.403 [restartedMain] INFO  o.apache.catalina.util.LifecycleBase - The stop() method was called on component [StandardServer[-1]] after stop() had already been called. The second call will be ignored.
+2019-07-12 11:42:40.403 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:42:40.403 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:42:40.407 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-07-12 11:42:40.413 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2019-07-12 11:42:40.415 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:43:01.604 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 26904 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:43:01.607 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:43:01.656 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-07-12 11:43:01.656 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-07-12 11:43:02.731 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:43:02.746 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:43:02.757 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:43:02.757 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:43:02.883 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:43:02.884 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1228 ms
+2019-07-12 11:43:03.106 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:43:03.292 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:43:03.315 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:43:03.337 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-07-12 11:43:03.343 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Started JAiRoPushApplication in 2.214 seconds (JVM running for 3.695)
+2019-07-12 11:43:17.984 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-12 11:43:17.984 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-07-12 11:43:17.990 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2019-07-12 11:43:38.255 [http-nio-8080-exec-3] INFO  c.n.p.controller.PushTestController - sadfsdfsdfasdfdsajfosadjfoasdf
+2019-07-12 11:43:38.256 [http-nio-8080-exec-3] INFO  c.n.p.controller.PushTestController - PUSH EXECUTE!!!
+2019-07-12 11:43:38.257 [http-nio-8080-exec-3] INFO  c.n.p.controller.PushTestController - asdfasfsadfasdfsadfasdf
+2019-07-12 11:43:38.257 [http-nio-8080-exec-3] INFO  c.nexus.push.service.PushServiceImpl - FCM PUSH START !!!!!
+2019-07-12 11:43:38.257 [http-nio-8080-exec-3] INFO  c.n.push.util.fcmApnsTokenHandler - FCM TOKEN MAKE START !!!!!
+2019-07-12 11:43:38.259 [http-nio-8080-exec-3] INFO  c.n.p.controller.PushTestController - PUSH FAIL 500 error : java.io.FileNotFoundException: C:\Users\carrey\AppData\Local\Temp\tomcat-docbase.8425860704246441143.8080\WEB-INF\classes\META-INF\waiv-a098f-firebase-adminsdk-spnqf-f8786f22c9.json (지정된 경로를 찾을 수 없습니다)
+2019-07-12 11:44:51.591 [Thread-5] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:44:52.172 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 26904 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:44:52.173 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:44:52.426 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:44:52.428 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:44:52.428 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:44:52.428 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:44:52.454 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:44:52.454 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 278 ms
+2019-07-12 11:44:52.521 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:44:52.567 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:44:52.577 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:44:52.583 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-07-12 11:44:52.583 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Started JAiRoPushApplication in 0.441 seconds (JVM running for 112.934)
+2019-07-12 11:44:52.585 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-07-12 11:45:02.038 [Thread-9] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:45:02.602 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 26904 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:45:02.602 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:45:02.622 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.nexus.push.JAiRoPushApplication]; nested exception is java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+2019-07-12 11:45:02.631 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.nexus.push.JAiRoPushApplication]; nested exception is java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:181)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:315)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:232)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:275)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:95)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:705)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:531)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202)
+	at com.nexus.push.JAiRoPushApplication.main(JAiRoPushApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:180)
+	at org.springframework.core.io.support.EncodedResource.getInputStream(EncodedResource.java:159)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:99)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:73)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.loadProperties(PropertiesLoaderUtils.java:59)
+	at org.springframework.core.io.support.ResourcePropertySource.<init>(ResourcePropertySource.java:67)
+	at org.springframework.core.io.support.DefaultPropertySourceFactory.createPropertySource(DefaultPropertySourceFactory.java:37)
+	at org.springframework.context.annotation.ConfigurationClassParser.processPropertySource(ConfigurationClassParser.java:452)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:271)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:191)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:295)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:167)
+	... 18 common frames omitted
+2019-07-12 11:45:25.240 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 26904 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:45:25.240 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:45:25.265 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.nexus.push.JAiRoPushApplication]; nested exception is java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+2019-07-12 11:45:25.267 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.nexus.push.JAiRoPushApplication]; nested exception is java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:181)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:315)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:232)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:275)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:95)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:705)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:531)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202)
+	at com.nexus.push.JAiRoPushApplication.main(JAiRoPushApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:180)
+	at org.springframework.core.io.support.EncodedResource.getInputStream(EncodedResource.java:159)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:99)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:73)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.loadProperties(PropertiesLoaderUtils.java:59)
+	at org.springframework.core.io.support.ResourcePropertySource.<init>(ResourcePropertySource.java:67)
+	at org.springframework.core.io.support.DefaultPropertySourceFactory.createPropertySource(DefaultPropertySourceFactory.java:37)
+	at org.springframework.context.annotation.ConfigurationClassParser.processPropertySource(ConfigurationClassParser.java:452)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:271)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:191)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:295)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:167)
+	... 18 common frames omitted
+2019-07-12 11:45:48.860 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 26904 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:45:48.860 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:45:48.891 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.nexus.push.JAiRoPushApplication]; nested exception is java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+2019-07-12 11:45:48.892 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.nexus.push.JAiRoPushApplication]; nested exception is java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:181)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:315)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:232)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:275)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:95)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:705)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:531)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202)
+	at com.nexus.push.JAiRoPushApplication.main(JAiRoPushApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [META-INF/push.properties] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:180)
+	at org.springframework.core.io.support.EncodedResource.getInputStream(EncodedResource.java:159)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:99)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:73)
+	at org.springframework.core.io.support.PropertiesLoaderUtils.loadProperties(PropertiesLoaderUtils.java:59)
+	at org.springframework.core.io.support.ResourcePropertySource.<init>(ResourcePropertySource.java:67)
+	at org.springframework.core.io.support.DefaultPropertySourceFactory.createPropertySource(DefaultPropertySourceFactory.java:37)
+	at org.springframework.context.annotation.ConfigurationClassParser.processPropertySource(ConfigurationClassParser.java:452)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:271)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:191)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:295)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:167)
+	... 18 common frames omitted
+2019-07-12 11:47:14.009 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 26904 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:47:14.010 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:47:14.371 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:47:14.372 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:47:14.373 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:47:14.373 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:47:14.402 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:47:14.402 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 389 ms
+2019-07-12 11:47:14.470 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:47:14.519 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:47:14.530 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:47:14.535 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-07-12 11:47:14.536 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Started JAiRoPushApplication in 0.556 seconds (JVM running for 254.887)
+2019-07-12 11:47:14.538 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-07-12 11:47:26.724 [RMI TCP Connection(22)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-07-12 11:47:26.730 [RMI TCP Connection(22)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:47:27.696 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 4980 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:47:27.700 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:47:27.767 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-07-12 11:47:27.767 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-07-12 11:47:35.506 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 11088 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:47:35.510 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:47:35.557 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-07-12 11:47:35.558 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-07-12 11:47:36.580 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:47:36.595 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:47:36.605 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:47:36.606 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:47:36.748 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:47:36.748 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1190 ms
+2019-07-12 11:47:36.969 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:47:37.136 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:47:37.161 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:47:37.188 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-07-12 11:47:37.193 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Started JAiRoPushApplication in 2.16 seconds (JVM running for 3.526)
+2019-07-12 11:48:49.709 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-12 11:48:49.709 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-07-12 11:48:49.714 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2019-07-12 11:48:49.836 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - sadfsdfsdfasdfdsajfosadjfoasdf
+2019-07-12 11:48:49.837 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - PUSH EXECUTE!!!
+2019-07-12 11:48:49.838 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - asdfasfsadfasdfsadfasdf
+2019-07-12 11:48:49.838 [http-nio-8080-exec-1] INFO  c.nexus.push.service.PushServiceImpl - FCM PUSH START !!!!!
+2019-07-12 11:48:49.839 [http-nio-8080-exec-1] INFO  c.n.push.util.fcmApnsTokenHandler - FCM TOKEN MAKE START !!!!!
+2019-07-12 11:48:49.841 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - PUSH FAIL 500 error : java.io.FileNotFoundException: C:\Users\carrey\AppData\Local\Temp\tomcat-docbase.8941445815976841961.8080\WEB-INF\classes\META-INF\waiv-a098f-firebase-adminsdk-spnqf-f8786f22c9.json (지정된 경로를 찾을 수 없습니다)
+2019-07-12 11:49:21.283 [Thread-5] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:49:21.817 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 11088 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:49:21.817 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:49:22.053 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:49:22.054 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:49:22.054 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:49:22.054 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:49:22.077 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:49:22.078 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 257 ms
+2019-07-12 11:49:22.133 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:49:22.173 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:49:22.182 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:49:22.187 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-07-12 11:49:22.188 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Started JAiRoPushApplication in 0.398 seconds (JVM running for 108.522)
+2019-07-12 11:49:22.190 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-07-12 11:49:30.232 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-12 11:49:30.233 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-07-12 11:49:30.237 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2019-07-12 11:49:30.248 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - sadfsdfsdfasdfdsajfosadjfoasdf
+2019-07-12 11:49:30.248 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - PUSH EXECUTE!!!
+2019-07-12 11:49:30.249 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - asdfasfsadfasdfsadfasdf
+2019-07-12 11:49:30.250 [http-nio-8080-exec-1] INFO  c.nexus.push.service.PushServiceImpl - FCM PUSH START !!!!!
+2019-07-12 11:49:30.250 [http-nio-8080-exec-1] INFO  c.n.push.util.fcmApnsTokenHandler - FCM TOKEN MAKE START !!!!!
+2019-07-12 11:49:30.252 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - PUSH FAIL 500 error : java.io.FileNotFoundException: C:\Users\carrey\AppData\Local\Temp\tomcat-docbase.3910456528331073063.8080\WEB-INF\classes\META-INF\waiv-a098f-firebase-adminsdk-spnqf-f8786f22c9.json (지정된 경로를 찾을 수 없습니다)
+2019-07-12 11:49:50.774 [Thread-9] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:49:51.277 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Starting JAiRoPushApplication on DESKTOP-PFK81CQ with PID 11088 (D:\JAiRO_PUSH(boot)\JAiRO-PUSH\bin\main started by carrey in D:\JAiRO_PUSH(boot)\JAiRO-PUSH)
+2019-07-12 11:49:51.278 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - No active profile set, falling back to default profiles: default
+2019-07-12 11:49:51.477 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-07-12 11:49:51.478 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:49:51.478 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-07-12 11:49:51.479 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-12 11:49:51.505 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-07-12 11:49:51.505 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 226 ms
+2019-07-12 11:49:51.549 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-12 11:49:51.585 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-07-12 11:49:51.593 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-07-12 11:49:51.597 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-07-12 11:49:51.598 [restartedMain] INFO  com.nexus.push.JAiRoPushApplication - Started JAiRoPushApplication in 0.342 seconds (JVM running for 137.931)
+2019-07-12 11:49:51.599 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-07-12 11:49:55.966 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-12 11:49:55.968 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-07-12 11:49:55.970 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2019-07-12 11:49:55.982 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - sadfsdfsdfasdfdsajfosadjfoasdf
+2019-07-12 11:49:55.983 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - PUSH EXECUTE!!!
+2019-07-12 11:49:55.984 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - asdfasfsadfasdfsadfasdf
+2019-07-12 11:49:55.984 [http-nio-8080-exec-1] INFO  c.nexus.push.service.PushServiceImpl - FCM PUSH START !!!!!
+2019-07-12 11:49:55.984 [http-nio-8080-exec-1] INFO  c.n.push.util.fcmApnsTokenHandler - FCM TOKEN MAKE START !!!!!
+2019-07-12 11:49:55.987 [http-nio-8080-exec-1] INFO  c.n.p.controller.PushTestController - PUSH FAIL 500 error : java.io.FileNotFoundException: C:\Users\carrey\AppData\Local\Temp\tomcat-docbase.6592552954030508407.8080\waiv-a098f-firebase-adminsdk-spnqf-f8786f22c9.json (지정된 파일을 찾을 수 없습니다)
