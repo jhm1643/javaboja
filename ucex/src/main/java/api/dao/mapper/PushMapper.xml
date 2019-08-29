@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dao.PushDao">
+
+	<insert id="insertPushLog" parameterType="api.push.PushObject">
+		INSERT INTO cmuc.uc_push_result	(
+			invokeid,
+			userid,
+			device,
+			token,
+			menu,
+			title,
+			fromid,
+			fromtenant,
+			mode,
+			message,
+			result_code,
+			result_message
+		) VALUES (
+			#{invokeid},
+			#{userid},
+			#{device},
+			#{token},
+			#{menu},
+			#{title},
+			#{from},
+			#{fromtenant},
+			#{mode},
+			#{message},
+			#{resultCode},
+			#{resultMessage}
+		)
+	</insert>
+	
+	<delete id="deleteOldPushLogs" parameterType="int">
+		DELETE FROM cmuc.uc_push_result
+		WHERE NOW() > DATE_ADD( TIMESTAMP(pushed_datetime), INTERVAL #{push_log_period} DAY)
+	</delete>
+	
+	<update id="deleteExtensionToken" parameterType="string">
+		update uc_extension set uce_os_type=null, uce_push_key=null
+		where uce_push_key = #{token}
+	</update>
+</mapper>

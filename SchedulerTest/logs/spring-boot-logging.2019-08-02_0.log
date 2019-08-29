@@ -1,0 +1,903 @@
+2019-08-02 23:39:45.711 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 5848 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:39:45.712 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:39:45.988 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:39:46.003 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15ms. Found 1 repository interfaces.
+2019-08-02 23:39:46.062 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d0e8fce7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:39:46.178 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:39:46.179 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:39:46.179 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:39:46.212 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:39:46.212 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 497 ms
+2019-08-02 23:39:46.255 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2019-08-02 23:39:46.257 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2019-08-02 23:39:46.265 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:39:46.276 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:39:46.306 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@70e9e7a'
+2019-08-02 23:39:46.306 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:39:46.326 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:39:46.431 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:39:46.436 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:39:46.511 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:39:46.512 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:39:46.512 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:39:46.512 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:39:46.513 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:39:46.513 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:39:46.513 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:39:46.513 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5e793ab8
+2019-08-02 23:39:46.543 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:39:46.543 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:39:46.551 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:39:46.552 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.951 seconds (JVM running for 32.378)
+2019-08-02 23:39:46.557 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:39:49.364 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-08-02 23:39:49.367 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:39:49.369 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:39:49.369 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:39:49.370 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:39:49.370 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:39:49.371 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:39:49.371 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:39:49.371 [RMI TCP Connection(3)-127.0.0.1] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:39:49.376 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:39:49.376 [RMI TCP Connection(3)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2019-08-02 23:39:49.379 [RMI TCP Connection(3)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2019-08-02 23:39:58.374 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:39:58.377 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:39:58.422 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-08-02 23:39:58.422 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-08-02 23:39:59.021 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:39:59.076 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48ms. Found 1 repository interfaces.
+2019-08-02 23:39:59.365 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:39:59.659 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:39:59.671 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:39:59.678 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:39:59.678 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:39:59.793 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:39:59.794 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1372 ms
+2019-08-02 23:39:59.913 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-08-02 23:40:00.068 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-08-02 23:40:00.116 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:40:00.168 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.10.Final}
+2019-08-02 23:40:00.171 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2019-08-02 23:40:00.280 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-08-02 23:40:00.393 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:40:00.871 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:40:00.874 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:40:00.905 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:40:01.287 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:40:01.315 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:40:01.462 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:40:01.472 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:40:01.472 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:40:01.473 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:40:01.473 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:40:01.473 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:40:01.474 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:40:01.474 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5d308e75
+2019-08-02 23:40:01.527 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:40:01.528 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:40:01.535 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:40:01.555 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:40:01.557 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 3.537 seconds (JVM running for 4.826)
+2019-08-02 23:40:20.984 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-02 23:40:20.984 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-02 23:40:20.994 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+2019-08-02 23:40:21.099 [http-nio-8080-exec-1] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+2019-08-02 23:40:21.182 [http-nio-8080-exec-1] INFO  c.example.controller.TestController - id : 1 , value : a
+2019-08-02 23:40:21.192 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Circular view path []: would dispatch back to the current handler URL [/] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)] with root cause
+javax.servlet.ServletException: Circular view path []: would dispatch back to the current handler URL [/] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)
+	at org.springframework.web.servlet.view.InternalResourceView.prepareForRendering(InternalResourceView.java:209)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:147)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:316)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1371)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1117)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1056)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-08-02 23:41:26.432 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:41:26.433 [Thread-6] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:41:26.433 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:41:26.433 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:41:26.434 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:41:26.434 [Thread-6] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:41:26.435 [Thread-6] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:41:26.435 [Thread-6] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:41:26.445 [Thread-6] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:41:26.445 [Thread-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-08-02 23:41:26.448 [Thread-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2019-08-02 23:41:27.246 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:41:27.247 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:41:27.488 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:41:27.499 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11ms. Found 1 repository interfaces.
+2019-08-02 23:41:27.544 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:41:27.643 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:41:27.645 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:41:27.645 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:41:27.645 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:41:27.672 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:41:27.673 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 424 ms
+2019-08-02 23:41:27.720 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2019-08-02 23:41:27.722 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2019-08-02 23:41:27.731 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:41:27.741 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:41:27.774 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:41:27.775 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:41:27.789 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:41:27.896 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:41:27.901 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:41:27.972 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:41:27.973 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:41:27.973 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:41:27.973 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:41:27.973 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:41:27.973 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:41:27.973 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:41:27.973 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@112df093
+2019-08-02 23:41:28.002 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:41:28.002 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:41:28.005 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:41:28.010 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:41:28.011 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.813 seconds (JVM running for 91.28)
+2019-08-02 23:41:28.013 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:42:20.713 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:42:20.716 [Thread-11] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:42:20.717 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:42:20.717 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:42:20.717 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:42:20.719 [Thread-11] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:42:20.721 [Thread-11] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:42:20.721 [Thread-11] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:42:20.727 [Thread-11] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:42:20.728 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2019-08-02 23:42:20.731 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2019-08-02 23:42:21.489 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:42:21.490 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:42:21.714 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:42:21.726 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12ms. Found 1 repository interfaces.
+2019-08-02 23:42:21.768 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:42:21.863 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:42:21.864 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:42:21.865 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:42:21.865 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:42:21.893 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:42:21.893 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 401 ms
+2019-08-02 23:42:21.930 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2019-08-02 23:42:21.932 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2019-08-02 23:42:21.940 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:42:21.950 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:42:21.976 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:42:21.977 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:42:21.987 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:42:22.068 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:42:22.072 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:42:22.129 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:42:22.131 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:42:22.131 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:42:22.131 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:42:22.131 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:42:22.131 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:42:22.131 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:42:22.131 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@39e7a67b
+2019-08-02 23:42:22.155 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:42:22.155 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:42:22.158 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:42:22.162 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:42:22.163 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.716 seconds (JVM running for 145.432)
+2019-08-02 23:42:22.164 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:43:47.096 [Thread-18] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:43:47.099 [Thread-18] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:43:47.099 [Thread-18] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:43:47.099 [Thread-18] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:43:47.100 [Thread-18] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:43:47.101 [Thread-18] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:43:47.103 [Thread-18] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:43:47.103 [Thread-18] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:43:47.109 [Thread-18] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:43:47.109 [Thread-18] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2019-08-02 23:43:47.112 [Thread-18] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2019-08-02 23:43:47.908 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:43:47.908 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:43:48.122 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:43:48.134 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12ms. Found 1 repository interfaces.
+2019-08-02 23:43:48.177 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:43:48.280 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:43:48.281 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:43:48.282 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:43:48.282 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:43:48.306 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:43:48.306 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 396 ms
+2019-08-02 23:43:48.339 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2019-08-02 23:43:48.341 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2019-08-02 23:43:48.349 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:43:48.361 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:43:48.389 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:43:48.389 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:43:48.399 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:43:48.485 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:43:48.489 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:43:48.546 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:43:48.547 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:43:48.547 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:43:48.547 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:43:48.547 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:43:48.547 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:43:48.547 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:43:48.547 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2cc15e53
+2019-08-02 23:43:48.573 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:43:48.573 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:43:48.576 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:43:48.579 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:43:48.580 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.714 seconds (JVM running for 231.849)
+2019-08-02 23:43:48.582 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:43:54.009 [Thread-24] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:43:54.013 [Thread-24] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:43:54.014 [Thread-24] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:43:54.014 [Thread-24] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:43:54.014 [Thread-24] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:43:54.016 [Thread-24] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:43:54.019 [Thread-24] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:43:54.020 [Thread-24] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:43:54.026 [Thread-24] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:43:54.026 [Thread-24] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+2019-08-02 23:43:54.029 [Thread-24] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+2019-08-02 23:43:54.857 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:43:54.857 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:43:55.115 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:43:55.132 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17ms. Found 1 repository interfaces.
+2019-08-02 23:43:55.181 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:43:55.290 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:43:55.290 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:43:55.291 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:43:55.291 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:43:55.315 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:43:55.315 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 456 ms
+2019-08-02 23:43:55.354 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Starting...
+2019-08-02 23:43:55.356 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Start completed.
+2019-08-02 23:43:55.365 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:43:55.379 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:43:55.405 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:43:55.405 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:43:55.415 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:43:55.500 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:43:55.505 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:43:55.556 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:43:55.557 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:43:55.557 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:43:55.557 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:43:55.557 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:43:55.557 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:43:55.557 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:43:55.557 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@23075ee4
+2019-08-02 23:43:55.586 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:43:55.586 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:43:55.590 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:43:55.594 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:43:55.594 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.774 seconds (JVM running for 238.864)
+2019-08-02 23:43:55.596 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:44:05.044 [Thread-30] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:44:05.047 [Thread-30] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:44:05.047 [Thread-30] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:44:05.047 [Thread-30] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:44:05.047 [Thread-30] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:44:05.047 [Thread-30] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:44:05.048 [Thread-30] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:44:05.048 [Thread-30] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:44:05.053 [Thread-30] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:44:05.053 [Thread-30] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown initiated...
+2019-08-02 23:44:05.055 [Thread-30] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown completed.
+2019-08-02 23:44:05.801 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:44:05.802 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:44:06.024 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:44:06.035 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11ms. Found 1 repository interfaces.
+2019-08-02 23:44:06.071 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:44:06.160 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:44:06.161 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:44:06.162 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:44:06.162 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:44:06.183 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:44:06.184 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 380 ms
+2019-08-02 23:44:06.214 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Starting...
+2019-08-02 23:44:06.216 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Start completed.
+2019-08-02 23:44:06.227 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:44:06.237 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:44:06.261 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:44:06.262 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:44:06.271 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:44:06.352 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:44:06.356 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:44:06.406 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:44:06.407 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:44:06.407 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:44:06.407 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:44:06.407 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:44:06.408 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:44:06.408 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:44:06.408 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3c96840b
+2019-08-02 23:44:06.431 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:44:06.431 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:44:06.434 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:44:06.436 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:44:06.437 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.669 seconds (JVM running for 249.706)
+2019-08-02 23:44:06.439 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:44:16.895 [Thread-36] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:44:16.898 [Thread-36] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:44:16.898 [Thread-36] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:44:16.898 [Thread-36] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:44:16.898 [Thread-36] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:44:16.898 [Thread-36] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:44:16.899 [Thread-36] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:44:16.899 [Thread-36] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:44:16.902 [Thread-36] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:44:16.902 [Thread-36] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Shutdown initiated...
+2019-08-02 23:44:16.903 [Thread-36] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-6 - Shutdown completed.
+2019-08-02 23:44:17.683 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2424 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:44:17.683 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:44:17.907 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:44:17.918 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10ms. Found 1 repository interfaces.
+2019-08-02 23:44:17.955 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$755e35f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:44:18.039 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:44:18.040 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:44:18.040 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:44:18.040 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:44:18.062 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:44:18.063 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 377 ms
+2019-08-02 23:44:18.097 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Starting...
+2019-08-02 23:44:18.099 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Start completed.
+2019-08-02 23:44:18.108 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:44:18.120 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:44:18.153 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3fb86026'
+2019-08-02 23:44:18.154 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:44:18.165 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:44:18.249 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:44:18.254 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:44:18.308 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:44:18.309 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:44:18.310 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:44:18.310 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:44:18.310 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:44:18.310 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:44:18.310 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:44:18.310 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@57c2d9f0
+2019-08-02 23:44:18.332 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:44:18.333 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:44:18.335 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:44:18.338 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:44:18.339 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.696 seconds (JVM running for 261.608)
+2019-08-02 23:44:18.340 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:44:47.028 [RMI TCP Connection(8)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-08-02 23:44:47.031 [RMI TCP Connection(8)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:44:47.032 [RMI TCP Connection(8)-127.0.0.1] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:44:47.033 [RMI TCP Connection(8)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:44:47.033 [RMI TCP Connection(8)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:44:47.033 [RMI TCP Connection(8)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:44:47.033 [RMI TCP Connection(8)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:44:47.034 [RMI TCP Connection(8)-127.0.0.1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:44:47.034 [RMI TCP Connection(8)-127.0.0.1] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:44:47.038 [RMI TCP Connection(8)-127.0.0.1] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:44:47.038 [RMI TCP Connection(8)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Shutdown initiated...
+2019-08-02 23:44:47.039 [RMI TCP Connection(8)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Shutdown completed.
+2019-08-02 23:44:51.024 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 1808 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:44:51.027 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:44:51.104 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-08-02 23:44:51.104 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-08-02 23:44:51.682 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:44:51.745 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57ms. Found 1 repository interfaces.
+2019-08-02 23:44:52.040 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a16d8250] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:44:52.325 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:44:52.337 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:44:52.344 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:44:52.345 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:44:52.459 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:44:52.459 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1354 ms
+2019-08-02 23:44:52.584 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-08-02 23:44:52.712 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-08-02 23:44:52.755 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:44:52.808 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.10.Final}
+2019-08-02 23:44:52.810 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2019-08-02 23:44:52.917 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-08-02 23:44:53.013 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:44:53.444 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@9586e3e'
+2019-08-02 23:44:53.447 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:44:53.478 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:44:53.847 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:44:53.879 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:44:54.032 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:44:54.041 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:44:54.042 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:44:54.043 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:44:54.044 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:44:54.044 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:44:54.044 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:44:54.044 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@97cb9b5
+2019-08-02 23:44:54.093 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:44:54.094 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:44:54.098 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:44:54.116 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:44:54.119 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 3.465 seconds (JVM running for 4.774)
+2019-08-02 23:45:06.508 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-02 23:45:06.508 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-02 23:45:06.517 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2019-08-02 23:45:06.561 [http-nio-8080-exec-1] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+2019-08-02 23:45:06.661 [http-nio-8080-exec-1] INFO  c.example.controller.TestController - id : 1 , value : a
+2019-08-02 23:45:06.674 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Circular view path []: would dispatch back to the current handler URL [/] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)] with root cause
+javax.servlet.ServletException: Circular view path []: would dispatch back to the current handler URL [/] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)
+	at org.springframework.web.servlet.view.InternalResourceView.prepareForRendering(InternalResourceView.java:209)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:147)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:316)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1371)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1117)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1056)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-08-02 23:46:21.046 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:46:21.047 [Thread-6] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:46:21.047 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:46:21.047 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:46:21.048 [Thread-6] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:46:21.048 [Thread-6] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:46:21.049 [Thread-6] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:46:21.049 [Thread-6] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:46:21.058 [Thread-6] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:46:21.058 [Thread-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-08-02 23:46:21.060 [Thread-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2019-08-02 23:46:21.857 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 1808 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:46:21.858 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:46:22.115 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:46:22.128 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 1 repository interfaces.
+2019-08-02 23:46:22.186 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a16d8250] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:46:22.300 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:46:22.301 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:46:22.302 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:46:22.302 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:46:22.325 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:46:22.326 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 465 ms
+2019-08-02 23:46:22.365 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2019-08-02 23:46:22.367 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2019-08-02 23:46:22.375 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:46:22.388 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:46:22.424 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@9586e3e'
+2019-08-02 23:46:22.425 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:46:22.438 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:46:22.545 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:46:22.551 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:46:22.615 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:46:22.616 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:46:22.617 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:46:22.617 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:46:22.617 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:46:22.617 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:46:22.617 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:46:22.617 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@59e1e629
+2019-08-02 23:46:22.622 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2019-08-02 23:46:22.646 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:46:22.646 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:46:22.652 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:46:22.657 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:46:22.657 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.844 seconds (JVM running for 93.312)
+2019-08-02 23:46:22.662 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   TaskSchedulingAutoConfiguration#taskScheduler matched:
+      - @ConditionalOnBean (names: org.springframework.context.annotation.internalScheduledAnnotationProcessor; SearchStrategy: all) found bean 'org.springframework.context.annotation.internalScheduledAnnotationProcessor'; @ConditionalOnMissingBean (types: org.springframework.scheduling.annotation.SchedulingConfigurer,org.springframework.scheduling.TaskScheduler,java.util.concurrent.ScheduledExecutorService; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2019-08-02 23:46:48.219 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:46:48.222 [Thread-11] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2019-08-02 23:46:48.223 [Thread-11] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:46:48.223 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:46:48.223 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:46:48.223 [Thread-11] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:46:48.225 [Thread-11] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:46:48.226 [Thread-11] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:46:48.226 [Thread-11] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:46:48.231 [Thread-11] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:46:48.231 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2019-08-02 23:46:48.234 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2019-08-02 23:46:49.050 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 1808 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:46:49.050 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:46:49.278 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:46:49.292 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 1 repository interfaces.
+2019-08-02 23:46:49.345 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a16d8250] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:46:49.439 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:46:49.440 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:46:49.441 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:46:49.441 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:46:49.469 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:46:49.469 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 416 ms
+2019-08-02 23:46:49.507 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2019-08-02 23:46:49.509 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2019-08-02 23:46:49.517 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:46:49.528 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:46:49.554 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@9586e3e'
+2019-08-02 23:46:49.555 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:46:49.569 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:46:49.664 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:46:49.669 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:46:49.725 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:46:49.727 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:46:49.727 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:46:49.727 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:46:49.727 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:46:49.727 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:46:49.727 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:46:49.727 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@b5c0d27
+2019-08-02 23:46:49.730 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2019-08-02 23:46:49.751 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:46:49.751 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:46:49.756 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:46:49.755 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:49.761 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:46:49.761 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 0.754 seconds (JVM running for 120.416)
+2019-08-02 23:46:49.763 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-08-02 23:46:49.859 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:49.960 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.061 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.162 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.263 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.364 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.465 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.566 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.668 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.770 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.871 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:50.973 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.076 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.177 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.279 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.380 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.482 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.582 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.684 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.785 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.886 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:51.986 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.088 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.189 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.290 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.391 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.492 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.593 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.695 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.797 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:52.898 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.000 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.101 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.203 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.305 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.406 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.508 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.608 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.709 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.810 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:53.913 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.014 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.116 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.217 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.318 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.420 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.522 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.623 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.725 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.827 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:54.928 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.030 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.131 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.233 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.334 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.435 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.537 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.639 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.740 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.841 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:55.943 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:56.044 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:56.146 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:56.247 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:56.350 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:46:56.441 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-08-02 23:46:56.442 [RMI TCP Connection(5)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:46:56.445 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2019-08-02 23:46:56.446 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:46:56.446 [RMI TCP Connection(5)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:46:56.446 [RMI TCP Connection(5)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:46:56.446 [RMI TCP Connection(5)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:46:56.448 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:46:56.450 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:46:56.450 [RMI TCP Connection(5)-127.0.0.1] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:46:56.456 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:46:56.456 [RMI TCP Connection(5)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2019-08-02 23:46:56.460 [RMI TCP Connection(5)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2019-08-02 23:47:00.466 [restartedMain] INFO  com.example.SchedulerTestApplication - Starting SchedulerTestApplication on carrey with PID 2388 (C:\development\projects\SchedulerTest\bin\main started by 조하명 in C:\development\projects\SchedulerTest)
+2019-08-02 23:47:00.470 [restartedMain] INFO  com.example.SchedulerTestApplication - No active profile set, falling back to default profiles: default
+2019-08-02 23:47:00.517 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-08-02 23:47:00.517 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-08-02 23:47:01.183 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-02 23:47:01.243 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 54ms. Found 1 repository interfaces.
+2019-08-02 23:47:01.581 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$23f4cd0c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-02 23:47:01.864 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-02 23:47:01.877 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:47:01.885 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-02 23:47:01.885 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-02 23:47:01.999 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-02 23:47:02.000 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1483 ms
+2019-08-02 23:47:02.130 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-08-02 23:47:02.301 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-08-02 23:47:02.342 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-02 23:47:02.394 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.10.Final}
+2019-08-02 23:47:02.396 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2019-08-02 23:47:02.513 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-08-02 23:47:02.616 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-02 23:47:03.081 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@4f320b3e'
+2019-08-02 23:47:03.084 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:47:03.122 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-08-02 23:47:03.551 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:47:03.585 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-02 23:47:03.751 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2019-08-02 23:47:03.761 [restartedMain] INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-08-02 23:47:03.761 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.1 created.
+2019-08-02 23:47:03.763 [restartedMain] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2019-08-02 23:47:03.764 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-08-02 23:47:03.764 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-08-02 23:47:03.764 [restartedMain] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.1
+2019-08-02 23:47:03.765 [restartedMain] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2fcc9b37
+2019-08-02 23:47:03.774 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2019-08-02 23:47:03.832 [restartedMain] INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2019-08-02 23:47:03.833 [restartedMain] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-08-02 23:47:03.840 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:03.842 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-02 23:47:03.863 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-02 23:47:03.866 [restartedMain] INFO  com.example.SchedulerTestApplication - Started SchedulerTestApplication in 3.778 seconds (JVM running for 5.101)
+2019-08-02 23:47:03.941 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.043 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.144 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.246 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.347 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.448 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.549 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.651 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.752 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.855 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:04.955 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.057 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.159 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.260 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.362 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.464 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.567 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.669 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.770 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.871 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:05.973 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:06.074 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:06.175 [scheduling-1] INFO  com.example.util.Scheduler - 스케쥴 로그 ok!!
+2019-08-02 23:47:06.203 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-08-02 23:47:06.205 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:47:06.206 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2019-08-02 23:47:06.206 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2019-08-02 23:47:06.207 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-08-02 23:47:06.207 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-08-02 23:47:06.207 [RMI TCP Connection(3)-127.0.0.1] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-08-02 23:47:06.207 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-02 23:47:06.208 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-02 23:47:06.208 [RMI TCP Connection(3)-127.0.0.1] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-08-02 23:47:06.220 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-199]
+2019-08-02 23:47:06.220 [RMI TCP Connection(3)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-08-02 23:47:06.240 [RMI TCP Connection(3)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%t] - %-40.40logger{39} : %m%n%wex" />
+	<conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="api.utils.NLoggerPatternLayoutEncoder">
+			<charset>UTF-8</charset>
+			<pattern>%d{HH:mm:ss.SSS} %-5level \(%F:%L\)</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder class="api.utils.NLoggerPatternLayoutEncoder">
+			<charset>UTF-8</charset>
+			<pattern>%d{HH:mm:ss.SSS} %-5level \(%F:%L\)</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<file>logs/ucex.out</file>
+			<fileNamePattern>logs/ucex_%d{yyyy-MM-dd}_%i.log.zip</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy	class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+				<maxHistory>30</maxHistory>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+	
+	<!-- sql logging -->
+	<logger name="api.dao" level="INFO"/>
+	<logger name="org.springframework" level="INFO"/>
+	<logger name="org.apache" level="INFO"/>
+	
+</configuration>
