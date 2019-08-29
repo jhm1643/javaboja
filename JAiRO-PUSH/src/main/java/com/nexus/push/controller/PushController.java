@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,12 +32,12 @@ public class PushController {
 	private TestService testService;
 	
 	
-	@RequestMapping(value = "/nexus/waiv/push" , method = RequestMethod.POST)
+	@PostMapping(value = "/nexus/waiv/push")
 	public ResponseEntity<HttpResponseVo> waivPush(@RequestBody HttpRequestVo pushRequestVo,HttpServletRequest request, HttpServletResponse res){
 		return pushService.waivPush(pushRequestVo);
 	}
 	
-	@RequestMapping(value = "/nexus/visitkorea/push" , method = RequestMethod.POST)
+	@PostMapping(value = "/nexus/visitkorea/push")
 	public ResponseEntity<HttpResponseVo> visitPush(@RequestBody HttpRequestVo pushRequestVo,HttpServletRequest request, HttpServletResponse res){
 //		List<String> device_token_list = new ArrayList<>();
 //		device_token_list.add(pushRequestVo.getDevice_token());
@@ -43,11 +45,17 @@ public class PushController {
 		return pushService.visitKoreaPush(pushRequestVo);
 	}
 	
-	@RequestMapping(value = "/nexus/visitkorea/pushcontent", method = RequestMethod.GET)
-	public void getPushContent(){
-		List<PushContentDTO> list = testService.getPushContentList();
-		for(int i=0;i<list.size();i++) {
-			logger.info("carrey : "+list.get(i).getTitle());
-		}
+	@PostMapping(value = "/nexus/visitkorea/users/{device_type}")
+	public ResponseEntity<HttpResponseVo> userInsert(@PathVariable String device_type){
+		
+		return null;
 	}
+//	@RequestMapping(value = "/nexus/visitkorea/pushcontent", method = RequestMethod.GET)
+//	public void getPushContent(){
+//		List<PushContentDTO> list = testService.getPushContentList();
+//		for(int i=0;i<list.size();i++) {
+//			logger.info("carrey : "+list.get(i).getTitle());
+//		}
+//	}
+	
 }

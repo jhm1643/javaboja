@@ -21,20 +21,22 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.api.client.http.HttpResponse;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.BatchResponse;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.MulticastMessage;
-import com.nexus.push.domain.HttpErrorCode;
 import com.nexus.push.domain.HttpResponseEntity;
 import com.nexus.push.domain.HttpResponseVo;
 import com.nexus.push.domain.HttpRequestVo;
 import com.nexus.push.httpClient.HttpClient;
+import com.nexus.push.util.HttpStatusCode;
 import com.nexus.push.util.JWTHandler;
 import com.nexus.push.util.JsonPostMessageHandler;
 
@@ -54,16 +56,16 @@ public class PushServiceImpl implements PushService{
 	@Autowired
 	private JsonPostMessageHandler jsonPostMessageHandler;
 	
-	private static final String PUSH_SUCCESS = "PUSH SUCCESS";
-	private static final String PUSH_FAIL = "PUSH FAIL";
-	
-	private static final int STATUS_200_CODE = 200;
-	private static final int STATUS_400_CODE = 400;
-	private static final int STATUS_500_CODE = 500;
-	
-	public static final String CODE_400_DATA_ERROR = "Received data is null";
-	public static final String CODE_400_DEVICE_ERROR = "Device name is android or ios";
-	public static final String CODE_400_TOKEN_ERROR = "Token value is empty";
+//	private static final String PUSH_SUCCESS = "PUSH SUCCESS";
+//	private static final String PUSH_FAIL = "PUSH FAIL";
+//	
+//	private static final int STATUS_200_CODE = 200;
+//	private static final int STATUS_400_CODE = 400;
+//	private static final int STATUS_500_CODE = 500;
+//	
+//	public static final String CODE_400_DATA_ERROR = "Received data is null";
+//	public static final String CODE_400_DEVICE_ERROR = "Device name is android or ios";
+//	public static final String CODE_400_TOKEN_ERROR = "Token value is empty";
 //	@Override
 //	public HttpResponseVo fcmPush(HttpRequestVo httpRequestVo) throws Exception{
 //		logger.info("FCM PUSH START !!!!!");
@@ -299,28 +301,36 @@ public class PushServiceImpl implements PushService{
 	@Override
 	public ResponseEntity<HttpResponseVo> waivPush(HttpRequestVo httpRequestVo) {
 		logger.info("PUSH EXECUTE!!!");
-		HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-		HttpResponseVo httpResponseVo= new HttpResponseVo();
+		//HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
+		//HttpResponseVo hrv= new HttpResponseVo();
 		try{
 			/* Basic Data Check */
+			BodyBuilder responseEntity = ResponseEntity.status(HttpStatusCode.STATUS_400_CODE);
+			HttpResponseVo hrv = new HttpResponseVo(HttpStatusCode.STATUS_400_CODE, HttpStatusCode.PUSH_FAIL, HttpStatusCode.CODE_400_DEVICE_ERROR);
 			//NO DATA
 			if(httpRequestVo==null) {
-				logger.info("PUSH FAIL 400 error : "+HttpErrorCode.CODE_400_DATA_ERROR);
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_DATA_ERROR);
+				logger.info("PUSH FAIL 400 error : "+HttpStatusCode.CODE_400_DATA_ERROR);
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_DATA_ERROR);
+				hrv.setErrorMessage(HttpStatusCode.CODE_400_DATA_ERROR);
+				return responseEntity.body(hrv);
 			}
 			//NO DEVICE
 			else if(httpRequestVo.getDevice_type()==null || httpRequestVo.getDevice_type().equals("")){
-				logger.info("PUSH FAIL 400 error : "+HttpErrorCode.CODE_400_DEVICE_ERROR);
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_DEVICE_ERROR);
+				logger.info("PUSH FAIL 400 error : "+HttpStatusCode.CODE_400_DEVICE_ERROR);
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_DEVICE_ERROR);
+				return responseEntity.body(hrv);
 			}else if(!(httpRequestVo.getDevice_type().equals("ios") || httpRequestVo.getDevice_type().equals("android"))){
-				logger.info("PUSH FAIL 400 error : "+HttpErrorCode.CODE_400_DEVICE_ERROR);
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_DEVICE_ERROR);
+				logger.info("PUSH FAIL 400 error : "+HttpStatusCode.CODE_400_DEVICE_ERROR);
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_DEVICE_ERROR);
+				return responseEntity.body(hrv);
 			}
 			//NO DEVICE TOKEN
 			else if(httpRequestVo.getDevice_token()==null || httpRequestVo.getDevice_token().equals("")) {
-				logger.info("PUSH FAIL 400 error : "+HttpErrorCode.CODE_400_TOKEN_ERROR);
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_TOKEN_ERROR);
+				logger.info("PUSH FAIL 400 error : "+HttpStatusCode.CODE_400_TOKEN_ERROR);
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, CODE_400_TOKEN_ERROR);
+				return responseEntity.body(hrv);
 			}
+			
 			/* Push Start */
 			switch(httpRequestVo.getDevice_type()) {
 				case "ios" : 
@@ -338,7 +348,7 @@ public class PushServiceImpl implements PushService{
 					httpRequestVo.setRequest_url(env.getProperty("apns.url"));
 					
 					//HttpClient Start
-					httpResponseVo = httpclient.singlePushStart(httpRequestVo);
+					hrv = httpclient.singlePushStart(httpRequestVo);
 					break;
 				case "android" : 
 					//JWT Setting
@@ -353,43 +363,47 @@ public class PushServiceImpl implements PushService{
 					httpRequestVo.setRequest_url(env.getProperty("fcm.url"));
 					
 					//HttpClient Start
-					httpResponseVo = httpclient.singlePushStart(httpRequestVo);
+					hrv = httpclient.singlePushStart(httpRequestVo);
 					break;
 			}
-			int result_code = httpResponseVo.getCode();
-			String error_message = httpResponseVo.getErrorMessage();
+			int result_code = hrv.getCode();
+			String error_message = hrv.getErrorMessage();
 			
 			//status code가 200으로 return될 경우 PUSH SUCCESS
 			if(result_code==200) {
 				logger.info("PUSH SUCCESS");
-				return httpResponseEntity.httpResponse(PUSH_SUCCESS, STATUS_200_CODE, "");
-			
+				//return httpResponseEntity.httpResponse(PUSH_SUCCESS, STATUS_200_CODE, "");
+				return ResponseEntity.ok(hrv);
 			//잘못된 디바이스 토큰이라는 메세지가 리턴된 경우 400 request error
 			}else if(error_message.equals("BadDeviceToken")){
-				logger.info("PUSH FAIL 400 error : "+httpResponseVo.getErrorMessage());
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, httpResponseVo.getErrorMessage());
+				logger.info("PUSH FAIL 400 error : "+hrv.getErrorMessage());
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, httpResponseVo.getErrorMessage());
+				return ResponseEntity.status(HttpStatusCode.STATUS_400_CODE).body(hrv);
 			}else if(error_message.equals("The registration token is not a valid FCM registration token")){
-				logger.info("PUSH FAIL 400 error : "+httpResponseVo.getErrorMessage());
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, httpResponseVo.getErrorMessage());
-			
+				logger.info("PUSH FAIL 400 error : "+hrv.getErrorMessage());
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_400_CODE, httpResponseVo.getErrorMessage());
+				return ResponseEntity.status(HttpStatusCode.STATUS_400_CODE).body(hrv);
 			//그외의 케이스인 경우 500 interval server error
 			}else{
-				logger.info("PUSH FAIL 500 error : "+httpResponseVo.getErrorMessage());
-				return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_500_CODE, httpResponseVo.getErrorMessage());
+				logger.info("PUSH FAIL 500 error : "+hrv.getErrorMessage());
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_500_CODE, hrv.getErrorMessage());
+				return ResponseEntity.status(HttpStatusCode.STATUS_500_CODE).body(hrv);
 			}
 		}catch(Exception e) {
 			
 			//예외 발생 시 500 interval server error
 			logger.info("PUSH FAIL 500 error : "+e.toString());
-			return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_500_CODE, e.toString());
+			//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_500_CODE, e.toString());
+			return ResponseEntity.status(HttpStatusCode.STATUS_500_CODE).body(new HttpResponseVo(HttpStatusCode.PUSH_FAIL, e.toString()));
 		}
 	}
 
 	@Override
 	public ResponseEntity<HttpResponseVo> visitKoreaPush(HttpRequestVo httpRequestVo) {
 		// TODO Auto-generated method stub
-		HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-		HttpResponseVo httpResponseVo = new HttpResponseVo();
+		
+		//HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
+		HttpResponseVo hrv = new HttpResponseVo();
 		try {
 			switch(httpRequestVo.getDevice_type()) {
 			case "ios" : 
@@ -407,7 +421,7 @@ public class PushServiceImpl implements PushService{
 				httpRequestVo.setRequest_url(env.getProperty("apns.url"));
 				
 				//HttpClient Start
-				httpResponseVo = httpclient.multiPushStart(httpRequestVo);
+				hrv = httpclient.multiPushStart(httpRequestVo);
 				break;
 			case "android" : 
 				//JWT Setting
@@ -422,17 +436,20 @@ public class PushServiceImpl implements PushService{
 				httpRequestVo.setRequest_url(env.getProperty("fcm.url"));
 				
 				//HttpClient Start
-				httpResponseVo = httpclient.multiPushStart(httpRequestVo);
+				hrv = httpclient.multiPushStart(httpRequestVo);
 				break;
 		}
-			if(httpResponseVo.getCode()!=200) {
-				return httpResponseEntity.httpResponse(PUSH_FAIL, httpResponseVo.getCode(), httpResponseVo.getErrorMessage());
+			if(hrv.getCode()!=200) {
+				//return httpResponseEntity.httpResponse(PUSH_FAIL, httpResponseVo.getCode(), httpResponseVo.getErrorMessage());
+				return ResponseEntity.status(hrv.getCode()).body(hrv);
 			}
 		}catch(Exception e) {
-			return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_500_CODE, e.toString());
+			//return httpResponseEntity.httpResponse(PUSH_FAIL, STATUS_500_CODE, e.toString());
+			return ResponseEntity.status(HttpStatusCode.STATUS_500_CODE).body(hrv);
 		}
 		
-		return httpResponseEntity.httpResponse(PUSH_SUCCESS, STATUS_200_CODE, "");
+		//return httpResponseEntity.httpResponse(PUSH_SUCCESS, STATUS_200_CODE, "");
+		return ResponseEntity.ok(hrv);
 	}
 	
 }

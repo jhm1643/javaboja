@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nexus.push.domain.HttpResponseVo;
+import com.nexus.push.util.HttpStatusCode;
 import com.nexus.push.domain.HttpRequestVo;
 
 @Slf4j
@@ -189,9 +190,10 @@ public class HttpClient implements Callback{
 					result = ((JsonObject) new JsonParser()
 							.parse(res.body().string()))
 							.getAsJsonObject("error")
-							.get("message").getAsString();
+							.get("message")
+							.getAsString();
 				}
-				return new HttpResponseVo(res.code(), result);
+				return new HttpResponseVo(res.code(), HttpStatusCode.PUSH_FAIL, result);
 			}
 		}catch(UnknownHostException e) {
 			//네트워크 문제로 connection fail할 경우 10회 재 시도
@@ -201,9 +203,11 @@ public class HttpClient implements Callback{
         	Thread.sleep(1000);
         	client.newCall(request).cancel();
         	singlePushStart(httpRequestVo);
+		}catch(Exception e) {
+			new HttpResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
 		}
 		
-		return new HttpResponseVo(res.code(), "");
+		return new HttpResponseVo(res.code(),HttpStatusCode.PUSH_SUCCESS, "");
 		
 	}
 	
@@ -239,10 +243,10 @@ public class HttpClient implements Callback{
 				logger.info("PUSH SECCESS COUNT : "+success_count);
 				logger.info("PUSH FAIL COUNT : "+fail_count);			
 		}catch(Exception e) {
-			new HttpResponseVo(500, e.getMessage());
+			new HttpResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
 		}
 		
-		return new HttpResponseVo(200, "");
+		return new HttpResponseVo(200, HttpStatusCode.PUSH_SUCCESS, "");
 		
 	}
 	
