@@ -1,6 +1,0 @@
-pluginManagement {
-	repositories {
-		gradlePluginPortal()
-	}
-}
-rootProject.name = 'javaboja_jpa_security'
