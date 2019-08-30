@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nexus.push.dao.PushMemberDao">
+	<insert id="merge">
+		insert into t_push_member
+		(
+			token_id,
+			device_type,
+			phone_num,
+			loc_id,
+			lang_id,
+			longtitude,
+			latitude,
+			create_date
+		)
+		values
+		(
+			#{token_id},
+			#{device_type},
+			#{phone_num},
+			#{loc_id},
+			#{lang_id},
+			#{longtitude},
+			#{latitude},
+			now()
+		)
+		on duplicate key update
+		loc_id = #{loc_id},
+		lang_id = #{lang_id},
+		longtitude = #{longtitude},
+		latitude = #{latitude},
+		mod_date = now()
+	</insert>
+	<select id="selectByLocIdAndLangId" parameterType="String">
+		select	token_id,
+			  	lang_id
+		from	t_push_member
+		where	loc_id = #{loc_id}
+		and		lang_id = #{lang_id}
+	</select>
+</mapper>

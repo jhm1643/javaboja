@@ -6,11 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.nexus.push.entity.PushContent;
+import com.nexus.push.entity.PushLocation;
 
 @Mapper
-public interface PushContentDao {
+public interface PushLocationDao {
 
-	public List<PushContent> selectAll();
-	public PushContent selectByConId(long con_id);
+	public List<PushLocation> selectAll();
+	public List<PushLocation> selectById(PushLocation pushLocation);
 	
 }
