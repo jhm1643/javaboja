@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import com.nexus.push.domain.HttpResponseVo;
 import com.nexus.push.entity.PushContent;
+import com.nexus.push.entity.PushMember;
 import com.nexus.push.dao.PushContentDao;
 import com.nexus.push.dao.PushMemberDao;
 import com.nexus.push.domain.HttpRequestVo;
@@ -34,7 +35,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	@Autowired
 	private JsonPostMessageHandler jsonPostMessageHandler;
 	@Autowired
-	private PushContentDao pushContentdao;
+	private PushContentDao pushContentDao;
 	@Autowired
 	private PushMemberDao pushMemberDao;
 	@Override
@@ -181,10 +182,26 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	@Override
 	public ResponseEntity<HttpResponseVo> vkPush(long con_id, long loc_id) {
 		// TODO Auto-generated method stub
-//		List<PushContent> pushContentList = pushContentdao.selectByConId(con_id);
-//		for(PushContent pushContent : pushContentList) {
-//			if(pushContent.get)
-//		}
+		PushContent pushContent = pushContentDao.selectByConId(con_id);
+		String contents_EN = pushContent.getContents_EN();
+		String contents_JA = pushContent.getContents_JA();
+		String contents_CH = pushContent.getContents_CH();
+		List<PushMember> pushMemberList = pushMemberDao.selectByLocId(loc_id);
+		for(PushMember pushMember : pushMemberList) {
+			long lang_id = pushMember.getLang_id();
+			//English
+			if(lang_id==1) {
+				
+			}
+			//Japanese
+			else if(lang_id==2) {
+				
+			}
+			//Chinese
+			else if(lang_id==3) {
+				
+			}
+		}
 		return null;
 	}
 	

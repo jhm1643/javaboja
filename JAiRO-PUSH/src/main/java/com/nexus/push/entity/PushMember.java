@@ -12,6 +12,7 @@ public class PushMember {
 	private String token_id;
 	private long loc_id;
 	private long lang_id;
+	private String contents;
 	private String device_type;
 	private String phone_num;
 	private String location;

@@ -33,11 +33,21 @@
 		latitude = #{latitude},
 		mod_date = now()
 	</insert>
-	<select id="selectByLocIdAndLangId" parameterType="String">
-		select	token_id,
-			  	lang_id
-		from	t_push_member
-		where	loc_id = #{loc_id}
-		and		lang_id = #{lang_id}
+	<select id="selectByLocId" parameterType="long">
+		select		token_id,
+					(
+						case member.lang_id
+	       				 	when 1 then contents_EN
+	        			 	when 2 then contents_JA
+	        			 	when 3 then contents_CH
+	        			 	else ''
+        			 	end
+        			) as contents
+		from 		t_push_member member,
+	 				t_push_language lang,
+     				t_push_content
+		where 		member.lang_id = lang.lang_id
+		and 		loc_id = #{loc_id}
+		group by 	token_id
 	</select>
 </mapper>
