@@ -33,7 +33,7 @@
 		latitude = #{latitude},
 		mod_date = now()
 	</insert>
-	<select id="selectByLocId" parameterType="long">
+	<select id="pushSendList" parameterType="long">
 		select		token_id,
 					(
 						case member.lang_id
@@ -48,6 +48,7 @@
      				t_push_content
 		where 		member.lang_id = lang.lang_id
 		and 		loc_id = #{loc_id}
+		and			device_type = #{device_type}
 		group by 	token_id
 	</select>
 </mapper>

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nexus.push.domain.HttpResponseVo;
+import com.nexus.push.domain.PushResponseVo;
 import com.nexus.push.entity.PushMember;
-import com.nexus.push.domain.HttpRequestVo;
+import com.nexus.push.domain.PushRequestVo;
 import com.nexus.push.service.MobilePushService;
 import com.nexus.push.service.UserDataCRUDService;
 
@@ -29,7 +29,7 @@ public class PushController {
 	private UserDataCRUDService userDataCRUDService;
 	
 	@PostMapping(value = "/nexus/waiv/push")
-	public ResponseEntity<HttpResponseVo> waivPush(@RequestBody HttpRequestVo pushRequestVo,HttpServletRequest request, HttpServletResponse res){
+	public ResponseEntity<PushResponseVo> waivPush(@RequestBody PushRequestVo pushRequestVo,HttpServletRequest request, HttpServletResponse res){
 		return mobilePushService.waivPush(pushRequestVo);
 	}
 	
@@ -54,12 +54,12 @@ public class PushController {
 //	}
 	
 	@PostMapping(value = "/nexus/vk/push/user/{device_type}")
-	public ResponseEntity<HttpResponseVo> userMerge(@RequestBody PushMember pushMember){
+	public ResponseEntity<PushResponseVo> userMerge(@RequestBody PushMember pushMember){
 		return userDataCRUDService.post(pushMember);
 	}
 	
 	@GetMapping(value = "/nexus/vk/push/send/{con_id}/{loc_id}")
-	public ResponseEntity<HttpResponseVo> visitPush(@PathVariable(value = "con_id") long con_id,
+	public ResponseEntity<PushResponseVo> visitPush(@PathVariable(value = "con_id") long con_id,
 													@PathVariable(value = "loc_id") long loc_id){
 		mobilePushService.vkPush(con_id, loc_id);
 		return null;

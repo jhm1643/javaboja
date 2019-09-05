@@ -29,9 +29,9 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.nexus.push.domain.HttpResponseVo;
+import com.nexus.push.domain.PushResponseVo;
 import com.nexus.push.util.HttpStatusCode;
-import com.nexus.push.domain.HttpRequestVo;
+import com.nexus.push.domain.PushRequestVo;
 
 @Slf4j
 @Component
@@ -46,20 +46,20 @@ public class HttpClient implements Callback{
 	private CountDownLatch cdl;
 	private int success_count=0;
 	private int fail_count=0;
-	HttpResponseVo pushResponseVo = new HttpResponseVo();
+	PushResponseVo pushResponseVo = new PushResponseVo();
 	
-//	public void http2MultiStart(HttpRequestVo httpRequestVo) throws Exception {
-//		httpRequestVo.setApns_full_url(
-//        		httpRequestVo.getRequest_type()+
-//        		httpRequestVo.getApns_start_url()+
-//        		":"+httpRequestVo.getApns_port()+
-//        		httpRequestVo.getApns_end_url()+
-//        		httpRequestVo.getDevice_token()
+//	public void http2MultiStart(HttpRequestVo pushRequestVo) throws Exception {
+//		pushRequestVo.setApns_full_url(
+//        		pushRequestVo.getRequest_type()+
+//        		pushRequestVo.getApns_start_url()+
+//        		":"+pushRequestVo.getApns_port()+
+//        		pushRequestVo.getApns_end_url()+
+//        		pushRequestVo.getDevice_token()
 //			  );
 //		logger.info("PUSH HTTPclient START !!!!!");
-//    	logger.info("PUSH HTTPclient DEVICE TYPE : {}",httpRequestVo.getDevice_type());
-//    	logger.info("PUSH HTTPclient DEVICE TOKEN : {}",httpRequestVo.getDevice_token());
-//    	logger.info("PUSH HTTPclient REQUEST URL : {}",httpRequestVo.getApns_full_url());
+//    	logger.info("PUSH HTTPclient DEVICE TYPE : {}",pushRequestVo.getDevice_type());
+//    	logger.info("PUSH HTTPclient DEVICE TOKEN : {}",pushRequestVo.getDevice_token());
+//    	logger.info("PUSH HTTPclient REQUEST URL : {}",pushRequestVo.getApns_full_url());
 //
 //    	Security.insertProviderAt(Conscrypt.newProvider(), 1);
 //    	OkHttpClient client = new OkHttpClient.Builder()
@@ -83,10 +83,10 @@ public class HttpClient implements Callback{
 //			cdl = new CountDownLatch(3000);
 //			for(int i=0;i<3000;i++) {
 //				request = new Request.Builder()
-//						.addHeader("Authorization", "Bearer " + httpRequestVo.getServer_token())
-//						.addHeader("apns-topic", httpRequestVo.getApns_topic())
-//		        		.url(httpRequestVo.getApns_full_url())
-//		        		.post(RequestBody.create(httpRequestVo.getPost_data(),JSON))
+//						.addHeader("Authorization", "Bearer " + pushRequestVo.getServer_token())
+//						.addHeader("apns-topic", pushRequestVo.getApns_topic())
+//		        		.url(pushRequestVo.getApns_full_url())
+//		        		.post(RequestBody.create(pushRequestVo.getPost_data(),JSON))
 //		        		
 //		        		.build();
 //				client.newCall(request).enqueue(new Callback() {
@@ -145,10 +145,10 @@ public class HttpClient implements Callback{
 //		}
 //    }
 	
-	public HttpResponseVo singlePushStart(HttpRequestVo httpRequestVo) throws Exception{
-		logger.info("device_token : "+httpRequestVo.getDevice_token());
-		logger.info("request url : "+httpRequestVo.getRequest_url());
-		logger.info("device_type : "+httpRequestVo.getDevice_type());
+	public PushResponseVo singlePushStart(PushRequestVo pushRequestVo) throws Exception{
+		logger.info("device_token : "+pushRequestVo.getDevice_token());
+		logger.info("request url : "+pushRequestVo.getRequest_url());
+		logger.info("device_type : "+pushRequestVo.getDevice_type());
 		//HTTP2 setting for use
 		Security.insertProviderAt(Conscrypt.newProvider(), 1);
 		
@@ -161,16 +161,16 @@ public class HttpClient implements Callback{
 		
 		//Http header & body setting
 		Builder builder = new Builder()
-					.addHeader("Authorization", "Bearer " + httpRequestVo.getServer_token())
-					.post(RequestBody.create(httpRequestVo.getPost_data(),JSON));
+					.addHeader("Authorization", "Bearer " + pushRequestVo.getServer_token())
+					.post(RequestBody.create(pushRequestVo.getPost_data(),JSON));
 		
 		//ios setting
-		if(httpRequestVo.getDevice_type().equals("ios")) {
-			builder.addHeader("apns-topic", httpRequestVo.getApns_topic())
-					.url(httpRequestVo.getRequest_url()+httpRequestVo.getDevice_token());
+		if(pushRequestVo.getDevice_type().equals("ios")) {
+			builder.addHeader("apns-topic", pushRequestVo.getApns_topic())
+					.url(pushRequestVo.getRequest_url()+pushRequestVo.getDevice_token());
 			
-		}else if(httpRequestVo.getDevice_type().equals("android")) {
-			builder.url(httpRequestVo.getRequest_url());
+		}else if(pushRequestVo.getDevice_type().equals("android")) {
+			builder.url(pushRequestVo.getRequest_url());
 		}
 		Request request = null;
 		Response res = null;		
@@ -180,12 +180,12 @@ public class HttpClient implements Callback{
 			res = client.newCall(request).execute();
 			String result = "";
 			if(res.code()!=200) {
-				if(httpRequestVo.getDevice_type().equals("ios")) {
+				if(pushRequestVo.getDevice_type().equals("ios")) {
 					result = ((JsonObject)new JsonParser()
 							.parse(res.body().string()))
 							.get("reason")
 							.getAsString();
-				}else if(httpRequestVo.getDevice_type().equals("android")) {
+				}else if(pushRequestVo.getDevice_type().equals("android")) {
 			//		logger.info("body : "+res.body().string());
 					result = ((JsonObject) new JsonParser()
 							.parse(res.body().string()))
@@ -193,7 +193,7 @@ public class HttpClient implements Callback{
 							.get("message")
 							.getAsString();
 				}
-				return new HttpResponseVo(res.code(), HttpStatusCode.PUSH_FAIL, result);
+				return new PushResponseVo(res.code(), HttpStatusCode.PUSH_FAIL, result);
 			}
 		}catch(UnknownHostException e) {
 			//네트워크 문제로 connection fail할 경우 10회 재 시도
@@ -202,16 +202,16 @@ public class HttpClient implements Callback{
         	logger.info("Connection Fail Reason{}, TRY COUNT : {}",e.getMessage(),tryCount);
         	Thread.sleep(1000);
         	client.newCall(request).cancel();
-        	singlePushStart(httpRequestVo);
+        	singlePushStart(pushRequestVo);
 		}catch(Exception e) {
-			new HttpResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
+			new PushResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
 		}
 		
-		return new HttpResponseVo(res.code(),HttpStatusCode.PUSH_SUCCESS, "");
+		return new PushResponseVo(res.code(),HttpStatusCode.PUSH_SUCCESS, "");
 		
 	}
 	
-	public HttpResponseVo multiPushStart(HttpRequestVo httpRequestVo) throws Exception{
+	public PushResponseVo multiPushStart(PushRequestVo pushRequestVo) throws Exception{
 		
 		//HTTP2 setting for use
 		Security.insertProviderAt(Conscrypt.newProvider(), 1);
@@ -225,13 +225,13 @@ public class HttpClient implements Callback{
 		
 		//Http header & body setting
 		Builder builder = new Builder()
-					.addHeader("Authorization", "Bearer " + httpRequestVo.getServer_token());
+					.addHeader("Authorization", "Bearer " + pushRequestVo.getServer_token());
 		//ios setting
-		if(httpRequestVo.getDevice_type().equals("ios")) {
-			builder.addHeader("apns-topic", httpRequestVo.getApns_topic())
-					.url(httpRequestVo.getRequest_url()+httpRequestVo.getDevice_token());
+		if(pushRequestVo.getDevice_type().equals("ios")) {
+			builder.addHeader("apns-topic", pushRequestVo.getApns_topic())
+					.url(pushRequestVo.getRequest_url()+pushRequestVo.getDevice_token());
 		}
-		int device_token_size = httpRequestVo.getDevice_token_list().size();
+		int device_token_size = pushRequestVo.getPushSendList().size();
 		cdl = new CountDownLatch(device_token_size);
 		Request request = null;
 		try {
@@ -243,10 +243,10 @@ public class HttpClient implements Callback{
 				logger.info("PUSH SECCESS COUNT : "+success_count);
 				logger.info("PUSH FAIL COUNT : "+fail_count);			
 		}catch(Exception e) {
-			new HttpResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
+			new PushResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
 		}
 		
-		return new HttpResponseVo(200, HttpStatusCode.PUSH_SUCCESS, "");
+		return new PushResponseVo(200, HttpStatusCode.PUSH_SUCCESS, "");
 		
 	}
 	

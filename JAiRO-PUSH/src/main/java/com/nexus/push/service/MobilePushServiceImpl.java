@@ -8,12 +8,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
-import com.nexus.push.domain.HttpResponseVo;
+import com.nexus.push.domain.PushResponseVo;
 import com.nexus.push.entity.PushContent;
 import com.nexus.push.entity.PushMember;
 import com.nexus.push.dao.PushContentDao;
 import com.nexus.push.dao.PushMemberDao;
-import com.nexus.push.domain.HttpRequestVo;
+import com.nexus.push.domain.PushRequestVo;
 import com.nexus.push.httpClient.HttpClient;
 import com.nexus.push.util.HttpStatusCode;
 import com.nexus.push.util.JWTHandler;
@@ -39,67 +39,67 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	@Autowired
 	private PushMemberDao pushMemberDao;
 	@Override
-	public ResponseEntity<HttpResponseVo> waivPush(HttpRequestVo httpRequestVo) {
+	public ResponseEntity<PushResponseVo> waivPush(PushRequestVo pushRequestVo) {
 		logger.info("PUSH EXECUTE!!!");
 		//HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
 		//HttpResponseVo hrv= new HttpResponseVo();
 		try{
 			/* Basic Data Check */
 			BodyBuilder responseEntity = ResponseEntity.status(STATUS_400_CODE);
-			HttpResponseVo hrv = new HttpResponseVo(STATUS_400_CODE, PUSH_FAIL, CODE_400_DEVICE_ERROR);
+			PushResponseVo hrv = new PushResponseVo(STATUS_400_CODE, PUSH_FAIL, CODE_400_DEVICE_ERROR);
 			//NO DATA
-			if(httpRequestVo==null) {
+			if(pushRequestVo==null) {
 				logger.info("PUSH FAIL 400 error : "+CODE_400_DATA_ERROR);
 				hrv.setErrorMessage(CODE_400_DATA_ERROR);
 				return responseEntity.body(hrv);
 			}
 			//NO DEVICE
-			else if(httpRequestVo.getDevice_type()==null || httpRequestVo.getDevice_type().equals("")){
+			else if(pushRequestVo.getDevice_type()==null || pushRequestVo.getDevice_type().equals("")){
 				logger.info("PUSH FAIL 400 error : "+CODE_400_DEVICE_ERROR);
 				return responseEntity.body(hrv);
-			}else if(!(httpRequestVo.getDevice_type().equals("ios") || httpRequestVo.getDevice_type().equals("android"))){
+			}else if(!(pushRequestVo.getDevice_type().equals("ios") || pushRequestVo.getDevice_type().equals("android"))){
 				logger.info("PUSH FAIL 400 error : "+CODE_400_DEVICE_ERROR);
 				return responseEntity.body(hrv);
 			}
 			//NO DEVICE TOKEN
-			else if(httpRequestVo.getDevice_token()==null || httpRequestVo.getDevice_token().equals("")) {
+			else if(pushRequestVo.getDevice_token()==null || pushRequestVo.getDevice_token().equals("")) {
 				logger.info("PUSH FAIL 400 error : "+CODE_400_TOKEN_ERROR);
 				return responseEntity.body(hrv);
 			}
 			
 			/* Push Start */
-			switch(httpRequestVo.getDevice_type()) {
+			switch(pushRequestVo.getDevice_type()) {
 				case "ios" : 
 					//JWT Setting
-					httpRequestVo.setKey_id(env.getProperty("apns.keyId"));
-					httpRequestVo.setTeam_id(env.getProperty("apns.teamId"));
-					httpRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
-					httpRequestVo.setApns_topic(env.getProperty("apns.topic"));
-					tokenHandler.apnsTokenSet(httpRequestVo);
+					pushRequestVo.setKey_id(env.getProperty("apns.keyId"));
+					pushRequestVo.setTeam_id(env.getProperty("apns.teamId"));
+					pushRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
+					pushRequestVo.setApns_topic(env.getProperty("apns.topic"));
+					tokenHandler.apnsTokenSet(pushRequestVo);
 					
 					//POST Message Setting
-					jsonPostMessageHandler.waivPostMessageSet(httpRequestVo);
+					jsonPostMessageHandler.waivPostMessageSet(pushRequestVo);
 					
 					//Request Url Setting
-					httpRequestVo.setRequest_url(env.getProperty("apns.url"));
+					pushRequestVo.setRequest_url(env.getProperty("apns.url"));
 					
 					//HttpClient Start
-					hrv = httpclient.singlePushStart(httpRequestVo);
+					hrv = httpclient.singlePushStart(pushRequestVo);
 					break;
 				case "android" : 
 					//JWT Setting
-					httpRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
-					httpRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
-					tokenHandler.fcmTokenSet(httpRequestVo);
+					pushRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
+					pushRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
+					tokenHandler.fcmTokenSet(pushRequestVo);
 					
 					//Post Message Setting
-					jsonPostMessageHandler.waivPostMessageSet(httpRequestVo);
+					jsonPostMessageHandler.waivPostMessageSet(pushRequestVo);
 					
 					//Request Url Setting
-					httpRequestVo.setRequest_url(env.getProperty("fcm.url"));
+					pushRequestVo.setRequest_url(env.getProperty("fcm.url"));
 					
 					//HttpClient Start
-					hrv = httpclient.singlePushStart(httpRequestVo);
+					hrv = httpclient.singlePushStart(pushRequestVo);
 					break;
 			}
 			int result_code = hrv.getCode();
@@ -125,49 +125,49 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 			
 			//예외 발생 시 500 interval server error
 			logger.info("PUSH FAIL 500 error : "+e.toString());
-			return ResponseEntity.status(STATUS_500_CODE).body(new HttpResponseVo(PUSH_FAIL, e.toString()));
+			return ResponseEntity.status(STATUS_500_CODE).body(new PushResponseVo(PUSH_FAIL, e.toString()));
 		}
 	}
 
 	@Override
-	public ResponseEntity<HttpResponseVo> visitKoreaPush(HttpRequestVo httpRequestVo) {
+	public ResponseEntity<PushResponseVo> visitKoreaPush(PushRequestVo pushRequestVo) {
 		// TODO Auto-generated method stub
 		
 		//HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-		HttpResponseVo hrv = new HttpResponseVo();
+		PushResponseVo hrv = new PushResponseVo();
 		try {
-			switch(httpRequestVo.getDevice_type()) {
+			switch(pushRequestVo.getDevice_type()) {
 			case "ios" : 
 				//JWT Setting
-				httpRequestVo.setKey_id(env.getProperty("apns.keyId"));
-				httpRequestVo.setTeam_id(env.getProperty("apns.teamId"));
-				httpRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
-				httpRequestVo.setApns_topic(env.getProperty("apns.topic"));
-				tokenHandler.apnsTokenSet(httpRequestVo);
+				pushRequestVo.setKey_id(env.getProperty("apns.keyId"));
+				pushRequestVo.setTeam_id(env.getProperty("apns.teamId"));
+				pushRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
+				pushRequestVo.setApns_topic(env.getProperty("apns.topic"));
+				tokenHandler.apnsTokenSet(pushRequestVo);
 				
 				//POST Message Setting
-				jsonPostMessageHandler.waivPostMessageSet(httpRequestVo);
+				jsonPostMessageHandler.waivPostMessageSet(pushRequestVo);
 				
 				//Request Url Setting
-				httpRequestVo.setRequest_url(env.getProperty("apns.url"));
+				pushRequestVo.setRequest_url(env.getProperty("apns.url"));
 				
 				//HttpClient Start
-				hrv = httpclient.multiPushStart(httpRequestVo);
+				hrv = httpclient.multiPushStart(pushRequestVo);
 				break;
 			case "android" : 
 				//JWT Setting
-				httpRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
-				httpRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
-				tokenHandler.fcmTokenSet(httpRequestVo);
+				pushRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
+				pushRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
+				tokenHandler.fcmTokenSet(pushRequestVo);
 				
 				//Post Message Setting
-				jsonPostMessageHandler.waivPostMessageSet(httpRequestVo);
+				jsonPostMessageHandler.waivPostMessageSet(pushRequestVo);
 				
 				//Request Url Setting
-				httpRequestVo.setRequest_url(env.getProperty("fcm.url"));
+				pushRequestVo.setRequest_url(env.getProperty("fcm.url"));
 				
 				//HttpClient Start
-				hrv = httpclient.multiPushStart(httpRequestVo);
+				hrv = httpclient.multiPushStart(pushRequestVo);
 				break;
 		}
 			if(hrv.getCode()!=200) {
@@ -180,28 +180,18 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	}
 
 	@Override
-	public ResponseEntity<HttpResponseVo> vkPush(long con_id, long loc_id) {
+	public ResponseEntity<PushResponseVo> vkPush(long con_id, long loc_id) {
 		// TODO Auto-generated method stub
-		PushContent pushContent = pushContentDao.selectByConId(con_id);
-		String contents_EN = pushContent.getContents_EN();
-		String contents_JA = pushContent.getContents_JA();
-		String contents_CH = pushContent.getContents_CH();
-		List<PushMember> pushMemberList = pushMemberDao.selectByLocId(loc_id);
-		for(PushMember pushMember : pushMemberList) {
-			long lang_id = pushMember.getLang_id();
-			//English
-			if(lang_id==1) {
-				
-			}
-			//Japanese
-			else if(lang_id==2) {
-				
-			}
-			//Chinese
-			else if(lang_id==3) {
-				
-			}
-		}
+		PushRequestVo pushRequestVo = PushRequestVo.builder().key_id(env.getProperty("apns.keyId"))
+															 .team_id(env.getProperty("apns.teamId"))
+															 .keyFile_name(env.getProperty("apns.p8.fileName"))
+															 .apns_topic(env.getProperty("apns.topic"))
+															 .request_url(env.getProperty("apns.url"))
+															 .build();
+		tokenHandler.apnsTokenSet(pushRequestVo);
+		List<PushMember> iosList = pushMemberDao.pushSendList(loc_id, "ios");
+		List<PushMember> androidList = pushMemberDao.pushSendList(loc_id, "android");
+		
 		return null;
 	}
 	
@@ -218,12 +208,12 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 //	public static final String CODE_400_DEVICE_ERROR = "Device name is android or ios";
 //	public static final String CODE_400_TOKEN_ERROR = "Token value is empty";
 //	@Override
-//	public HttpResponseVo fcmPush(HttpRequestVo httpRequestVo) throws Exception{
+//	public HttpResponseVo fcmPush(HttpRequestVo pushRequestVo) throws Exception{
 //		logger.info("FCM PUSH START !!!!!");
 //		//fcm token setting
-//		httpRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
-//		httpRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
-//		tokenHandler.fcmTokenSet(httpRequestVo);
+//		pushRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
+//		pushRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
+//		tokenHandler.fcmTokenSet(pushRequestVo);
 //		
 //		//fcm POST data setting
 //		logger.info("FCM PUSH DATA MAKE START !!!!!");
@@ -232,31 +222,31 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 //        JSONObject androidObject = new JSONObject();
 //        JSONObject parentObject = new JSONObject();
 //        androidObject.put("priority", "high");
-//        dataObject.put("menu", httpRequestVo.getMenu());
-//        dataObject.put("id", httpRequestVo.getId());
-//        dataObject.put("group_id", httpRequestVo.getGroup_id());
-//        dataObject.put("mode", httpRequestVo.getMode());
-//        dataObject.put("title", httpRequestVo.getTitle());
-//        dataObject.put("from_id", httpRequestVo.getFrom());
-//        dataObject.put("message", httpRequestVo.getMessage());
-//        messageObject.put("token", httpRequestVo.getDevice_token()); 
+//        dataObject.put("menu", pushRequestVo.getMenu());
+//        dataObject.put("id", pushRequestVo.getId());
+//        dataObject.put("group_id", pushRequestVo.getGroup_id());
+//        dataObject.put("mode", pushRequestVo.getMode());
+//        dataObject.put("title", pushRequestVo.getTitle());
+//        dataObject.put("from_id", pushRequestVo.getFrom());
+//        dataObject.put("message", pushRequestVo.getMessage());
+//        messageObject.put("token", pushRequestVo.getDevice_token()); 
 //        //messageObject.put("notification", dataObject);
 //        messageObject.put("android", androidObject);
 //        messageObject.put("data", dataObject);
 //        parentObject.put("message", messageObject); // deviceID
 //        logger.info("FCM PUSH DATA : {}",parentObject.toString());        
-//        httpRequestVo.setPost_data(parentObject.toString());
+//        pushRequestVo.setPost_data(parentObject.toString());
 //        logger.info("FCM PUSH DATA MAKE END !!!!!");
 //        
 //        //fcm url setting
-//        httpRequestVo.setFcm_start_url(env.getProperty("fcm.start.url"));
-//        httpRequestVo.setFcm_end_url(env.getProperty("fcm.end.url"));
-//        httpRequestVo.setFcm_port(Integer.parseInt(env.getProperty("fcm.port")));
-//        httpRequestVo.setRequest_type(env.getProperty("fcm.req.type"));
-//        httpRequestVo.setFcm_full_url(
-//        						httpRequestVo.getRequest_type()+
-//        						httpRequestVo.getFcm_start_url()+
-//        						httpRequestVo.getFcm_end_url()
+//        pushRequestVo.setFcm_start_url(env.getProperty("fcm.start.url"));
+//        pushRequestVo.setFcm_end_url(env.getProperty("fcm.end.url"));
+//        pushRequestVo.setFcm_port(Integer.parseInt(env.getProperty("fcm.port")));
+//        pushRequestVo.setRequest_type(env.getProperty("fcm.req.type"));
+//        pushRequestVo.setFcm_full_url(
+//        						pushRequestVo.getRequest_type()+
+//        						pushRequestVo.getFcm_start_url()+
+//        						pushRequestVo.getFcm_end_url()
 //        					  );
 //       /* Map<String,String> map = null;
 //        try {
@@ -280,100 +270,100 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 ////		BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
 ////		logger.info("carrey : "+response.toString());
 ////        return null;
-////		return httpclient.httpStart(httpRequestVo);
-//        httpclient.httpMultiStart(httpRequestVo);
+////		return httpclient.httpStart(pushRequestVo);
+//        httpclient.httpMultiStart(pushRequestVo);
 //        return null;
 //	}
 //	
 //	@Override
-//	public HttpResponseVo apnsPush(HttpRequestVo httpRequestVo) throws Exception{
+//	public HttpResponseVo apnsPush(HttpRequestVo pushRequestVo) throws Exception{
 //		logger.info("APNS PUSH START !!!!!");
 //		//apns token setting
-//		httpRequestVo.setKey_id(env.getProperty("apns.keyId"));
-//		httpRequestVo.setTeam_id(env.getProperty("apns.teamId"));
-//		httpRequestVo.setKey_path(env.getProperty("apns.keyPath"));
-//		httpRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
-//	//	httpRequestVo.setApns_keyFile(apnsKeyFile);
-//		tokenHandler.apnsTokenSet(httpRequestVo);
+//		pushRequestVo.setKey_id(env.getProperty("apns.keyId"));
+//		pushRequestVo.setTeam_id(env.getProperty("apns.teamId"));
+//		pushRequestVo.setKey_path(env.getProperty("apns.keyPath"));
+//		pushRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
+//	//	pushRequestVo.setApns_keyFile(apnsKeyFile);
+//		tokenHandler.apnsTokenSet(pushRequestVo);
 //		
 //		//apns POST data setting
 //		logger.info("APNS PUSH DATA MAKE START !!!!!");
 //		JSONObject apsObject = new JSONObject();
 //		//JSONObject alertObject = new JSONObject();
 //		JSONObject dataObject = new JSONObject();
-//		dataObject.put("menu", httpRequestVo.getMenu());
-//		dataObject.put("id", httpRequestVo.getId());
-//		dataObject.put("group_id", httpRequestVo.getGroup_id());
-//		dataObject.put("mode", httpRequestVo.getMode());
-//		dataObject.put("title", httpRequestVo.getTitle());
-//		dataObject.put("from_id", httpRequestVo.getFrom());
-//		dataObject.put("message", httpRequestVo.getMessage());
+//		dataObject.put("menu", pushRequestVo.getMenu());
+//		dataObject.put("id", pushRequestVo.getId());
+//		dataObject.put("group_id", pushRequestVo.getGroup_id());
+//		dataObject.put("mode", pushRequestVo.getMode());
+//		dataObject.put("title", pushRequestVo.getTitle());
+//		dataObject.put("from_id", pushRequestVo.getFrom());
+//		dataObject.put("message", pushRequestVo.getMessage());
 //		//alertObject.put("alert", dataObject);
 //		apsObject.put("aps", dataObject);
 //		logger.info("APNS PUSH DATA : {}",apsObject.toString());
-//        httpRequestVo.setPost_data(apsObject.toString());
+//        pushRequestVo.setPost_data(apsObject.toString());
 //        logger.info("APNS PUSH DATA MAKE END !!!!!");
 //        
 //        //apns topic setting
-//        httpRequestVo.setApns_topic(env.getProperty("apns.topic"));
+//        pushRequestVo.setApns_topic(env.getProperty("apns.topic"));
 //        
 //        //apns url setting
-//        httpRequestVo.setApns_start_url(env.getProperty("apns.start.url"));
-//        httpRequestVo.setApns_end_url(env.getProperty("apns.end.url"));
-//        httpRequestVo.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
-//        httpRequestVo.setRequest_type(env.getProperty("apns.req.type"));
+//        pushRequestVo.setApns_start_url(env.getProperty("apns.start.url"));
+//        pushRequestVo.setApns_end_url(env.getProperty("apns.end.url"));
+//        pushRequestVo.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
+//        pushRequestVo.setRequest_type(env.getProperty("apns.req.type"));
 //        
 //        return null;
-//	//	return httpclient.http2Start(httpRequestVo);
+//	//	return httpclient.http2Start(pushRequestVo);
 //	}
 //	
 //	@Override
-//	public void apnsMultiPushTest(HttpRequestVo httpRequestVo) throws Exception{
+//	public void apnsMultiPushTest(HttpRequestVo pushRequestVo) throws Exception{
 //		logger.info("APNS PUSH START !!!!!");
 //		//apns token setting
-//		httpRequestVo.setKey_id(env.getProperty("apns.keyId"));
-//		httpRequestVo.setTeam_id(env.getProperty("apns.teamId"));
-//		httpRequestVo.setKey_path(env.getProperty("apns.keyPath"));
-//		httpRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
-//	//	httpRequestVo.setApns_keyFile(apnsKeyFile);
-//		tokenHandler.apnsTokenSet(httpRequestVo);
+//		pushRequestVo.setKey_id(env.getProperty("apns.keyId"));
+//		pushRequestVo.setTeam_id(env.getProperty("apns.teamId"));
+//		pushRequestVo.setKey_path(env.getProperty("apns.keyPath"));
+//		pushRequestVo.setKeyFile_name(env.getProperty("apns.p8.fileName"));
+//	//	pushRequestVo.setApns_keyFile(apnsKeyFile);
+//		tokenHandler.apnsTokenSet(pushRequestVo);
 //		
 //		//apns POST data setting
 //		logger.info("APNS PUSH DATA MAKE START !!!!!");
 //		JSONObject apsObject = new JSONObject();
 //		JSONObject dataObject = new JSONObject();
-//		dataObject.put("menu", httpRequestVo.getMenu());
-//		dataObject.put("id", httpRequestVo.getId());
-//		dataObject.put("group_id", httpRequestVo.getGroup_id());
-//		dataObject.put("mode", httpRequestVo.getMode());
-//		dataObject.put("title", httpRequestVo.getTitle());
-//		dataObject.put("from_id", httpRequestVo.getFrom());
-//		dataObject.put("message", httpRequestVo.getMessage());
+//		dataObject.put("menu", pushRequestVo.getMenu());
+//		dataObject.put("id", pushRequestVo.getId());
+//		dataObject.put("group_id", pushRequestVo.getGroup_id());
+//		dataObject.put("mode", pushRequestVo.getMode());
+//		dataObject.put("title", pushRequestVo.getTitle());
+//		dataObject.put("from_id", pushRequestVo.getFrom());
+//		dataObject.put("message", pushRequestVo.getMessage());
 //		apsObject.put("aps", dataObject);
 //		logger.info("APNS PUSH DATA : {}",apsObject.toString());
-//        httpRequestVo.setPost_data(apsObject.toString());
+//        pushRequestVo.setPost_data(apsObject.toString());
 //        logger.info("APNS PUSH DATA MAKE END !!!!!");
 //        
 //        //apns topic setting
-//        httpRequestVo.setApns_topic(env.getProperty("apns.topic"));
+//        pushRequestVo.setApns_topic(env.getProperty("apns.topic"));
 //        
 //        //apns url setting
-//        httpRequestVo.setApns_start_url(env.getProperty("apns.start.url"));
-//        httpRequestVo.setApns_end_url(env.getProperty("apns.end.url"));
-//        httpRequestVo.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
-//        httpRequestVo.setRequest_type(env.getProperty("apns.req.type"));
+//        pushRequestVo.setApns_start_url(env.getProperty("apns.start.url"));
+//        pushRequestVo.setApns_end_url(env.getProperty("apns.end.url"));
+//        pushRequestVo.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
+//        pushRequestVo.setRequest_type(env.getProperty("apns.req.type"));
 //        
-//		httpclient.http2MultiStart(httpRequestVo);
+//		httpclient.http2MultiStart(pushRequestVo);
 //	}
 //
 //	@Override
-//	public void fcmMultiPushTest(HttpRequestVo httpRequestVo) throws Exception {
+//	public void fcmMultiPushTest(HttpRequestVo pushRequestVo) throws Exception {
 //		// TODO Auto-generated method stub
 //		logger.info("FCM PUSH START !!!!!");
 //		//fcm token setting
-//		httpRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
-//		httpRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
-//		tokenHandler.fcmTokenSet(httpRequestVo);
+//		pushRequestVo.setKey_path(env.getProperty("fcm.keyPath"));
+//		pushRequestVo.setKeyFile_name(env.getProperty("fcm.key.fileName"));
+//		tokenHandler.fcmTokenSet(pushRequestVo);
 //		
 //		//fcm POST data setting
 //		logger.info("FCM PUSH DATA MAKE START !!!!!");
@@ -382,34 +372,34 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 //        JSONObject androidObject = new JSONObject();
 //        JSONObject parentObject = new JSONObject();
 //        androidObject.put("priority", "high");
-//        dataObject.put("menu", httpRequestVo.getMenu());
-//        dataObject.put("id", httpRequestVo.getId());
-//        dataObject.put("group_id", httpRequestVo.getGroup_id());
-//        dataObject.put("mode", httpRequestVo.getMode());
-//        dataObject.put("title", httpRequestVo.getTitle());
-//        dataObject.put("from_id", httpRequestVo.getFrom());
-//        dataObject.put("message", httpRequestVo.getMessage());
-//        messageObject.put("token", httpRequestVo.getDevice_token()); 
+//        dataObject.put("menu", pushRequestVo.getMenu());
+//        dataObject.put("id", pushRequestVo.getId());
+//        dataObject.put("group_id", pushRequestVo.getGroup_id());
+//        dataObject.put("mode", pushRequestVo.getMode());
+//        dataObject.put("title", pushRequestVo.getTitle());
+//        dataObject.put("from_id", pushRequestVo.getFrom());
+//        dataObject.put("message", pushRequestVo.getMessage());
+//        messageObject.put("token", pushRequestVo.getDevice_token()); 
 //        //messageObject.put("notification", dataObject);
 //        messageObject.put("android", androidObject);
 //        messageObject.put("data", dataObject);
 //        parentObject.put("message", messageObject); // deviceID
 //        logger.info("FCM PUSH DATA : {}",parentObject.toString());        
-//        httpRequestVo.setPost_data(parentObject.toString());
+//        pushRequestVo.setPost_data(parentObject.toString());
 //        logger.info("FCM PUSH DATA MAKE END !!!!!");
 //        
 //        //fcm url setting
-//        httpRequestVo.setFcm_start_url(env.getProperty("fcm.start.url"));
-//        httpRequestVo.setFcm_end_url(env.getProperty("fcm.end.url"));
-//        httpRequestVo.setFcm_port(Integer.parseInt(env.getProperty("fcm.port")));
-//        httpRequestVo.setRequest_type(env.getProperty("fcm.req.type"));
-//        httpRequestVo.setFcm_full_url(
-//        						httpRequestVo.getRequest_type()+
-//        						httpRequestVo.getFcm_start_url()+
-//        						httpRequestVo.getFcm_end_url()
+//        pushRequestVo.setFcm_start_url(env.getProperty("fcm.start.url"));
+//        pushRequestVo.setFcm_end_url(env.getProperty("fcm.end.url"));
+//        pushRequestVo.setFcm_port(Integer.parseInt(env.getProperty("fcm.port")));
+//        pushRequestVo.setRequest_type(env.getProperty("fcm.req.type"));
+//        pushRequestVo.setFcm_full_url(
+//        						pushRequestVo.getRequest_type()+
+//        						pushRequestVo.getFcm_start_url()+
+//        						pushRequestVo.getFcm_end_url()
 //        					  );
 //		FirebaseOptions options = new FirebaseOptions.Builder()
-//		  .setCredentials(GoogleCredentials.fromStream(new FileInputStream(new ClassPathResource(httpRequestVo.getKeyFile_name()).getFile())))
+//		  .setCredentials(GoogleCredentials.fromStream(new FileInputStream(new ClassPathResource(pushRequestVo.getKeyFile_name()).getFile())))
 //		  .setDatabaseUrl("https://waiv-a098f.firebaseio.com")
 //		  .build();
 //		logger.info("옵션!!");

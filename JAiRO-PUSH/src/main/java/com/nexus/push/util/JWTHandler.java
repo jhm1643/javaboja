@@ -43,7 +43,7 @@ import com.google.api.client.json.webtoken.JsonWebSignature;
 import com.google.api.client.json.webtoken.JsonWebToken;
 import com.google.api.client.util.Beta;
 import com.google.api.client.util.Joiner;
-import com.nexus.push.domain.HttpRequestVo;
+import com.nexus.push.domain.PushRequestVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,7 +56,7 @@ public class JWTHandler{
 	//private int fcmTokenSet_retry = 5;
 	private int fcmTokenSet_tryCount=0;
 	
-	public void fcmTokenSet(HttpRequestVo pushDomain) throws IOException, InterruptedException{
+	public void fcmTokenSet(PushRequestVo pushDomain) throws IOException, InterruptedException{
 	
 		try {
 			logger.info("FCM TOKEN MAKE START !!!!!");
@@ -83,7 +83,7 @@ public class JWTHandler{
 	}
 	
 	//APNS p8 토큰 인증 방식
-	public void apnsTokenSet(HttpRequestVo pushDomain) {
+	public void apnsTokenSet(PushRequestVo pushDomain) {
 		logger.info("APNS TOKEN MAKE START !!!!!");
 		long nowMillis = System.currentTimeMillis()/1000;
 		String jwt_header	= String.format("{\"alg\" : \"ES256\" , \"kid\":\"%s\"}", pushDomain.getKey_id());
@@ -115,6 +115,40 @@ public class JWTHandler{
         logger.info("APNS TOKEN : {}",token);
         pushDomain.setServer_token(token);
         logger.info("APNS TOKEN MAKE END !!!!!");
+	}
+	
+	public String getApnsToken(String key_id, String team_id, String keyFile_name) {
+		logger.info("APNS TOKEN MAKE START !!!!!");
+		long nowMillis = System.currentTimeMillis()/1000;
+		String jwt_header	= String.format("{\"alg\" : \"ES256\" , \"kid\":\"%s\"}", key_id);
+		String jwt_payload 	= String.format("{\"iss\" : \"%s\" , \"iat\":\"%s\"}", team_id, nowMillis) ;
+		String base64_header = new String(Base64.encodeBase64String(jwt_header.getBytes(StandardCharsets.UTF_8)));
+        String base64_payload = new String(Base64.encodeBase64String(jwt_payload.getBytes(StandardCharsets.UTF_8)));
+        
+        String part1 = base64_header + "." + base64_payload;
+        Resource resource = new ClassPathResource(keyFile_name);
+        InputStream is = null;
+        BufferedReader br = null;
+        String currentLine="";
+        String secret="";
+        String token="";
+        try {
+			is = resource.getInputStream();
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((currentLine = br.readLine()) != null) {
+            	if(currentLine.contains("BEGIN PRIVATE KEY") || currentLine.contains("END PRIVATE KEY")) {
+            		continue;
+            	}
+                secret+=currentLine;
+            }
+           br.close();
+           token = base64_header + "." + base64_payload + "." + ES256(secret, part1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logger.info("APNS TOKEN : {}",token);
+        logger.info("APNS TOKEN MAKE END !!!!!");
+        return token;
 	}
 	
 	public String ES256(final String secret, final String data) throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {

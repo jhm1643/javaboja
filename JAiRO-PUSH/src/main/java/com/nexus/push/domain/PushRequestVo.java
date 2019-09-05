@@ -5,12 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
+
+import com.nexus.push.entity.PushMember;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class HttpRequestVo {
+@Builder
+public class PushRequestVo {
 	
 	//fcm domain
 	private String fcm_start_url;
@@ -36,7 +41,7 @@ public class HttpRequestVo {
 	private String message;
 	private String device_type;  // ios or android
 	private String device_token;	// device token
-	private List<String> device_token_list;
+	private List<PushMember> pushSendList;
 	private String post_data;
 	private String request_type;
 	private String key_path;

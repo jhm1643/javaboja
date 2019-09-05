@@ -12,7 +12,7 @@ import com.nexus.push.dao.PushLanguageDao;
 import com.nexus.push.dao.PushLocationDao;
 import com.nexus.push.dao.PushMemberDao;
 import com.nexus.push.dao.PushTokenHistoryDao;
-import com.nexus.push.domain.HttpResponseVo;
+import com.nexus.push.domain.PushResponseVo;
 import com.nexus.push.entity.PushLanguage;
 import com.nexus.push.entity.PushLocation;
 import com.nexus.push.entity.PushMember;
@@ -30,7 +30,7 @@ public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataC
 	@Autowired
 	private PushLanguageDao pushLanguageDao;
 	@Override
-	public ResponseEntity<HttpResponseVo> post(PushMember pushMember) {
+	public ResponseEntity<PushResponseVo> post(PushMember pushMember) {
 		try {
 			for(PushLanguage pushLanguage : pushLanguageDao.selectAll()) {
 				if(pushLanguage.getLanguage().equals(pushMember.getLanguage())) {
@@ -38,7 +38,7 @@ public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataC
 					break;
 				}
 				return ResponseEntity.status(STATUS_500_CODE)
-									 .body(new HttpResponseVo(STATUS_500_CODE, PUSH_FAIL, CODE_500_LANGUAGE_ERROR));
+									 .body(new PushResponseVo(STATUS_500_CODE, PUSH_FAIL, CODE_500_LANGUAGE_ERROR));
 			}
 			for(PushLocation pushLocation : pushLocationDao.selectAll()) {
 				if(pushLocation.getBig_city_name().equals(pushMember.getLocation())) {
@@ -46,7 +46,7 @@ public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataC
 					break;
 				}
 				return ResponseEntity.status(STATUS_500_CODE)
-						 .body(new HttpResponseVo(STATUS_500_CODE, PUSH_FAIL, CODE_500_LOCATION_ERROR));
+						 .body(new PushResponseVo(STATUS_500_CODE, PUSH_FAIL, CODE_500_LOCATION_ERROR));
 			}
 			pushMemberDao.merge(pushMember);
 			pushTokenHistoryDao.insert(PushTokenHistory.builder().device_token(pushMember.getToken_id())
@@ -55,10 +55,10 @@ public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataC
 		}catch(Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return ResponseEntity.status(STATUS_500_CODE)
-								 .body(new HttpResponseVo(STATUS_500_CODE, PUSH_FAIL, e.getMessage()));
+								 .body(new PushResponseVo(STATUS_500_CODE, PUSH_FAIL, e.getMessage()));
 		}
 		return ResponseEntity.status(STATUS_200_CODE)
-							 .body(new HttpResponseVo(STATUS_200_CODE, PUSH_SUCCESS, ""));
+							 .body(new PushResponseVo(STATUS_200_CODE, PUSH_SUCCESS, ""));
 	}
 
 }

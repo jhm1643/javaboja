@@ -3,12 +3,12 @@ package com.nexus.push.util;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
-import com.nexus.push.domain.HttpRequestVo;
+import com.nexus.push.domain.PushRequestVo;
 
 @Component
 public class JsonPostMessageHandler {
 	
-	public void waivPostMessageSet(HttpRequestVo pushRequestVo) {
+	public void waivPostMessageSet(PushRequestVo pushRequestVo) {
 		if(pushRequestVo.getDevice_type().equals("android")) {
 			JSONObject messageObject = new JSONObject();
 	        JSONObject dataObject = new JSONObject();

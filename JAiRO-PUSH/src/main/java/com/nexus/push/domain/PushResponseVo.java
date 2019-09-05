@@ -5,24 +5,24 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class HttpResponseVo {
+public class PushResponseVo {
 	
 	private int code;
 	private String message="";
 	private String errorMessage="";
 	
 
-	public HttpResponseVo() {};
-	public HttpResponseVo(int code, String errorMessage) {
+	public PushResponseVo() {};
+	public PushResponseVo(int code, String errorMessage) {
 		this.setCode(code);
 		this.setErrorMessage(errorMessage);
 	}
-	public HttpResponseVo(int code, String message, String errorMessage) {
+	public PushResponseVo(int code, String message, String errorMessage) {
 		this.setMessage(message);
 		this.setCode(code);
 		this.setErrorMessage(errorMessage);
 	}
-	public HttpResponseVo(String message, String errorMessage) {
+	public PushResponseVo(String message, String errorMessage) {
 		this.setMessage(message);
 		this.setErrorMessage(errorMessage);
 	}
