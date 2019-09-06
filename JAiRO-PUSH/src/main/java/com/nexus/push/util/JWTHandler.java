@@ -56,7 +56,7 @@ public class JWTHandler{
 	//private int fcmTokenSet_retry = 5;
 	private int fcmTokenSet_tryCount=0;
 	
-	public void fcmTokenSet(PushRequestVo pushDomain) throws IOException, InterruptedException{
+	public void fcmTokenSet(PushRequestVo pushDomain){
 	
 		try {
 			logger.info("FCM TOKEN MAKE START !!!!!");
@@ -70,16 +70,51 @@ public class JWTHandler{
 			logger.info("FCM TOKEN : {}",googleCredential.getAccessToken());
 			pushDomain.setServer_token(googleCredential.getAccessToken());
 			logger.info("FCM TOKEN MAKE END !!!!!");
-			
 		//네트워크 환경으로 인해 oauth2 토큰 인증 연결 실패시 10회 재시도
 		}catch(UnknownHostException |ConnectException e) {
-				if(fcmTokenSet_tryCount == 10) throw e;
+				if(fcmTokenSet_tryCount == 10) e.printStackTrace();
 				fcmTokenSet_tryCount++;
         		logger.info("Connection Fail Reason{}, TRY COUNT : {}",e.getMessage(),fcmTokenSet_tryCount);
-        		Thread.sleep(3000);
+        		try {
+        			Thread.sleep(3000);
+        		}catch(InterruptedException e1) {
+        			e.printStackTrace();
+        		}
+        		
         		fcmTokenSet(pushDomain);
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		
+	}
+	
+	public String getFcmToken(String keyFile_name){
+		GoogleCredential googleCredential = null;
+		try {
+			logger.info("FCM TOKEN MAKE START !!!!!");
+			Resource resource = new ClassPathResource(keyFile_name);
+			InputStream is = resource.getInputStream();
+			googleCredential = GoogleCredential.fromStream(is)
+				      						   .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging", 
+				      								   					   "https://www.googleapis.com/auth/cloud-platform"));
+			googleCredential.refreshToken();
+			logger.info("FCM TOKEN : {}",googleCredential.getAccessToken());
+			logger.info("FCM TOKEN MAKE END !!!!!");
+		//네트워크 환경으로 인해 oauth2 토큰 인증 연결 실패시 10회 재시도
+		}catch(UnknownHostException |ConnectException e) {
+				if(fcmTokenSet_tryCount == 10) e.printStackTrace();
+				fcmTokenSet_tryCount++;
+	    		logger.info("Connection Fail Reason{}, TRY COUNT : {}",e.getMessage(),fcmTokenSet_tryCount);
+	    		try {
+	    			Thread.sleep(3000);
+	    		}catch(InterruptedException e1) {
+	    			e1.printStackTrace();
+	    		}
+	    		getFcmToken(keyFile_name);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return googleCredential.getAccessToken();
 	}
 	
 	//APNS p8 토큰 인증 방식

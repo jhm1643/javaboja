@@ -180,15 +180,24 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	}
 
 	@Override
-	public ResponseEntity<PushResponseVo> vkPush(long con_id, long loc_id) {
+	public ResponseEntity<PushResponseVo> vkPush(long con_id, long loc_id){
 		// TODO Auto-generated method stub
-		PushRequestVo pushRequestVo = PushRequestVo.builder().key_id(env.getProperty("apns.keyId"))
-															 .team_id(env.getProperty("apns.teamId"))
-															 .keyFile_name(env.getProperty("apns.p8.fileName"))
-															 .apns_topic(env.getProperty("apns.topic"))
-															 .request_url(env.getProperty("apns.url"))
-															 .build();
-		tokenHandler.apnsTokenSet(pushRequestVo);
+//		PushRequestVo fcmRequestVo = PushRequestVo.builder().key_id(env.getProperty("apns.keyId"))
+//															 .team_id(env.getProperty("apns.teamId"))
+//															 .keyFile_name(env.getProperty("apns.p8.fileName"))
+//															 .apns_topic(env.getProperty("apns.topic"))
+//															 .request_url(env.getProperty("apns.url"))
+//															 .build();
+		PushRequestVo apnsRequestVo = PushRequestVo.builder().request_url(env.getProperty("apns.url"))
+															.apns_topic(env.getProperty("apns_topic"))
+															.server_token(tokenHandler.getApnsToken(env.getProperty("apns.keyId"),
+																									env.getProperty("apns.teamId"),
+																									env.getProperty("apns.p8.fileName")))
+															.build();
+		PushRequestVo fcmRequestVo = PushRequestVo.builder().request_url(env.getProperty("fcm.url"))
+															.server_token(tokenHandler.getFcmToken(env.getProperty("fcm.key.fileName")))
+															.build();
+				
 		List<PushMember> iosList = pushMemberDao.pushSendList(loc_id, "ios");
 		List<PushMember> androidList = pushMemberDao.pushSendList(loc_id, "android");
 		
