@@ -29,7 +29,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	@Autowired
 	Environment env;
 	@Autowired
-	private HttpClient httpclient;
+	private HttpClient httpClient;
 	@Autowired
 	private JWTHandler tokenHandler;
 	@Autowired
@@ -84,7 +84,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 					pushRequestVo.setRequest_url(env.getProperty("apns.url"));
 					
 					//HttpClient Start
-					hrv = httpclient.singlePushStart(pushRequestVo);
+					hrv = httpClient.singlePushStart(pushRequestVo);
 					break;
 				case "android" : 
 					//JWT Setting
@@ -99,7 +99,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 					pushRequestVo.setRequest_url(env.getProperty("fcm.url"));
 					
 					//HttpClient Start
-					hrv = httpclient.singlePushStart(pushRequestVo);
+					hrv = httpClient.singlePushStart(pushRequestVo);
 					break;
 			}
 			int result_code = hrv.getCode();
@@ -152,7 +152,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 				pushRequestVo.setRequest_url(env.getProperty("apns.url"));
 				
 				//HttpClient Start
-				hrv = httpclient.multiPushStart(pushRequestVo);
+				hrv = httpClient.multiPushStart(pushRequestVo);
 				break;
 			case "android" : 
 				//JWT Setting
@@ -167,7 +167,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 				pushRequestVo.setRequest_url(env.getProperty("fcm.url"));
 				
 				//HttpClient Start
-				hrv = httpclient.multiPushStart(pushRequestVo);
+				hrv = httpClient.multiPushStart(pushRequestVo);
 				break;
 		}
 			if(hrv.getCode()!=200) {
@@ -180,7 +180,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 	}
 
 	@Override
-	public ResponseEntity<PushResponseVo> vkPush(long con_id, long loc_id){
+	public ResponseEntity<PushResponseVo> vkPush(long loc_id, long con_id){
 		// TODO Auto-generated method stub
 //		PushRequestVo fcmRequestVo = PushRequestVo.builder().key_id(env.getProperty("apns.keyId"))
 //															 .team_id(env.getProperty("apns.teamId"))
@@ -188,19 +188,27 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 //															 .apns_topic(env.getProperty("apns.topic"))
 //															 .request_url(env.getProperty("apns.url"))
 //															 .build();
-		PushRequestVo apnsRequestVo = PushRequestVo.builder().request_url(env.getProperty("apns.url"))
-															.apns_topic(env.getProperty("apns_topic"))
-															.server_token(tokenHandler.getApnsToken(env.getProperty("apns.keyId"),
-																									env.getProperty("apns.teamId"),
-																									env.getProperty("apns.p8.fileName")))
-															.build();
-		PushRequestVo fcmRequestVo = PushRequestVo.builder().request_url(env.getProperty("fcm.url"))
-															.server_token(tokenHandler.getFcmToken(env.getProperty("fcm.key.fileName")))
-															.build();
-				
-		List<PushMember> iosList = pushMemberDao.pushSendList(loc_id, "ios");
-		List<PushMember> androidList = pushMemberDao.pushSendList(loc_id, "android");
 		
+//		PushRequestVo apnsRequestVo = PushRequestVo.builder().request_url(env.getProperty("apns.url"))
+//															.apns_topic(env.getProperty("apns_topic"))
+//															.server_token(tokenHandler.getApnsToken(env.getProperty("apns.keyId"),
+//																									env.getProperty("apns.teamId"),
+//																									env.getProperty("apns.p8.fileName")))
+//															.build();
+//		PushRequestVo fcmRequestVo = PushRequestVo.builder().request_url(env.getProperty("fcm.url"))
+//															.server_token(tokenHandler.getFcmToken(env.getProperty("fcm.key.fileName")))
+//															.build();
+		PushRequestVo pushRequestVo = PushRequestVo.builder().fcm_url(env.getProperty("fcm.url"))
+															 .fcm_server_token(tokenHandler.getFcmToken(env.getProperty("fcm.key.fileName")))
+															 .apns_url(env.getProperty("apns.url"))
+															 .apns_topic(env.getProperty("apns.topic"))
+															 .apns_server_token(tokenHandler.getApnsToken(env.getProperty("apns.keyId"),
+																		env.getProperty("apns.teamId"),
+																		env.getProperty("apns.p8.fileName")))
+															 .pushSendList(pushMemberDao.pushSendList(loc_id, con_id))
+															 .id(String.valueOf(con_id))
+															 .build();
+		httpClient.multiPushStart(pushRequestVo);
 		return null;
 	}
 	
@@ -279,8 +287,8 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 ////		BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
 ////		logger.info("carrey : "+response.toString());
 ////        return null;
-////		return httpclient.httpStart(pushRequestVo);
-//        httpclient.httpMultiStart(pushRequestVo);
+////		return httpClient.httpStart(pushRequestVo);
+//        httpClient.httpMultiStart(pushRequestVo);
 //        return null;
 //	}
 //	
@@ -323,7 +331,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 //        pushRequestVo.setRequest_type(env.getProperty("apns.req.type"));
 //        
 //        return null;
-//	//	return httpclient.http2Start(pushRequestVo);
+//	//	return httpClient.http2Start(pushRequestVo);
 //	}
 //	
 //	@Override
@@ -362,7 +370,7 @@ public class MobilePushServiceImpl extends HttpStatusCode implements MobilePushS
 //        pushRequestVo.setApns_port(Integer.parseInt(env.getProperty("apns.port")));
 //        pushRequestVo.setRequest_type(env.getProperty("apns.req.type"));
 //        
-//		httpclient.http2MultiStart(pushRequestVo);
+//		httpClient.http2MultiStart(pushRequestVo);
 //	}
 //
 //	@Override

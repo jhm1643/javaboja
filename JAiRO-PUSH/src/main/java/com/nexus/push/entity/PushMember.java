@@ -3,15 +3,17 @@ package com.nexus.push.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
-@Builder
+@ToString
 public class PushMember {
 
 	private String token_id;
 	private long loc_id;
 	private long lang_id;
+	private String con_id;
 	private String contents;
 	private String device_type;
 	private String phone_num;
@@ -21,5 +23,4 @@ public class PushMember {
 	private String latitude;
 	private String create_date;
 	private String mod_date;
-	
 }

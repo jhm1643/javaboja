@@ -1,10 +1,7 @@
 package com.nexus.push.domain;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONObject;
 
 import com.nexus.push.entity.PushMember;
 
@@ -15,16 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class PushRequestVo {
-	
-	//fcm domain
-	private String fcm_start_url;
-	private String fcm_end_url;
-	private int fcm_port;
-	private String fcm_full_url;
-	private JSONObject fcm_data;
-	private String fcm_url;
-	private String fcm_server_token;
+public class PushApnsVo {
+
 	//apns domain
 	private String apns_topic;
 	private String team_id;
@@ -35,8 +24,6 @@ public class PushRequestVo {
 	private int apns_port;
 	private String apns_full_url;
 	private File apns_keyFile;
-	private String apns_url;
-	private String apns_server_token;
 	
 	//common domain
 	private String title;
@@ -45,11 +32,6 @@ public class PushRequestVo {
 	private String device_type;  // ios or android
 	private String device_token;	// device token
 	private List<PushMember> pushSendList;
-	private String post_data;
-	private String post_data_KR;
-	private String post_data_EN;
-	private String post_data_JA;
-	private String post_data_CH;
 	private String request_type;
 	private String key_path;
 	private String keyFile_name;

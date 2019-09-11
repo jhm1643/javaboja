@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import com.nexus.push.domain.PushRequestVo;
+import com.nexus.push.entity.PushContent;
 
 @Component
 public class JsonPostMessageHandler {

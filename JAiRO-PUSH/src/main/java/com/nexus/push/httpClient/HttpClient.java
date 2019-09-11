@@ -17,12 +17,14 @@ import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.security.Security;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.conscrypt.Conscrypt;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -30,6 +32,7 @@ import org.springframework.stereotype.Component;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nexus.push.domain.PushResponseVo;
+import com.nexus.push.entity.PushMember;
 import com.nexus.push.util.HttpStatusCode;
 import com.nexus.push.domain.PushRequestVo;
 
@@ -150,7 +153,7 @@ public class HttpClient implements Callback{
 		logger.info("request url : "+pushRequestVo.getRequest_url());
 		logger.info("device_type : "+pushRequestVo.getDevice_type());
 		//HTTP2 setting for use
-		Security.insertProviderAt(Conscrypt.newProvider(), 1);
+		//Security.insertProviderAt(Conscrypt.newProvider(), 1);
 		
 		//HttpClient setting
 		OkHttpClient client = new OkHttpClient.Builder()
@@ -211,10 +214,11 @@ public class HttpClient implements Callback{
 		
 	}
 	
-	public PushResponseVo multiPushStart(PushRequestVo pushRequestVo) throws Exception{
+	public PushResponseVo multiPushStart(PushRequestVo pushRequestVo){
+		
 		
 		//HTTP2 setting for use
-		Security.insertProviderAt(Conscrypt.newProvider(), 1);
+		//Security.insertProviderAt(Conscrypt.newProvider(), 1);
 		
 		//HttpClient setting
 		OkHttpClient client = new OkHttpClient.Builder()
@@ -222,26 +226,45 @@ public class HttpClient implements Callback{
 					.retryOnConnectionFailure(true)
 					.connectionPool(new ConnectionPool(5, 1, TimeUnit.SECONDS))
 					.build();
-		
 		//Http header & body setting
-		Builder builder = new Builder()
-					.addHeader("Authorization", "Bearer " + pushRequestVo.getServer_token());
+		Builder fcmBuilder = new Builder().addHeader("Authorization", "Bearer " + pushRequestVo.getFcm_server_token())
+										  .url(pushRequestVo.getFcm_url());
 		//ios setting
-		if(pushRequestVo.getDevice_type().equals("ios")) {
-			builder.addHeader("apns-topic", pushRequestVo.getApns_topic())
-					.url(pushRequestVo.getRequest_url()+pushRequestVo.getDevice_token());
-		}
-		int device_token_size = pushRequestVo.getPushSendList().size();
-		cdl = new CountDownLatch(device_token_size);
+		Builder apnsBuilder = new Builder().addHeader("apns-topic", pushRequestVo.getApns_topic());
+		List<PushMember> pushSendList = pushRequestVo.getPushSendList();
+		int pushSendListSize = pushSendList.size();
+		cdl = new CountDownLatch(pushSendListSize);
 		Request request = null;
+		
 		try {
-				for(int i=0;i<device_token_size;i++) {
-					request = builder.build();
-					client.newCall(request).enqueue(this);
+			JSONObject messageObject = new JSONObject();
+	        JSONObject dataObject = new JSONObject();
+	        JSONObject androidObject = new JSONObject();
+	        JSONObject topParentObject = new JSONObject();
+	        androidObject.put("priority", "high");
+	        dataObject.put("id", pushRequestVo.getId());
+			for(int i=0;i<pushSendListSize;i++) {
+				PushMember pushMember = pushSendList.get(i);
+				dataObject.put("title", "");
+				dataObject.put("message", pushMember.getContents());
+				if(pushMember.getDevice_type().equals("ios")) {
+					apnsBuilder.url(pushRequestVo.getApns_url()+pushMember.getToken_id());
+					topParentObject.put("aps", dataObject);
+					apnsBuilder.post(RequestBody.create(topParentObject.toString(),JSON));
+					request = apnsBuilder.build();
+				}else {
+					messageObject.put("token", pushMember.getToken_id());
+					messageObject.put("android", androidObject);
+					messageObject.put("data", dataObject);
+					topParentObject.put("message", messageObject);
+					fcmBuilder.post(RequestBody.create(topParentObject.toString(),JSON));
+					request = fcmBuilder.build();
 				}
-				cdl.await();
-				logger.info("PUSH SECCESS COUNT : "+success_count);
-				logger.info("PUSH FAIL COUNT : "+fail_count);			
+				client.newCall(request).enqueue(this);
+			}
+			cdl.await();
+			logger.info("PUSH SECCESS COUNT : "+success_count);
+			logger.info("PUSH FAIL COUNT : "+fail_count);			
 		}catch(Exception e) {
 			new PushResponseVo(500, HttpStatusCode.PUSH_FAIL, e.getMessage());
 		}

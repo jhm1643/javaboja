@@ -1,5 +1,8 @@
 package com.nexus.push;
 
+import java.security.Security;
+
+import org.conscrypt.Conscrypt;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +16,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 public class JAiRoPushApplication {
 
 	public static void main(String[] args) {
+		Security.insertProviderAt(Conscrypt.newProvider(), 1);
 		SpringApplication.run(JAiRoPushApplication.class, args);
 	}
 

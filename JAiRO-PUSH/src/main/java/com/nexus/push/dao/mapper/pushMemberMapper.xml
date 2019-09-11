@@ -35,6 +35,7 @@
 	</insert>
 	<select id="pushSendList" parameterType="long">
 		select		token_id,
+					con_id,
 					(
 						case member.lang_id
 	       				 	when 1 then contents_EN
@@ -42,13 +43,15 @@
 	        			 	when 3 then contents_CH
 	        			 	else ''
         			 	end
-        			) as contents
+        			) as contents,
+        			device_type
 		from 		t_push_member member,
 	 				t_push_language lang,
-     				t_push_content
+     				t_push_content con
 		where 		member.lang_id = lang.lang_id
 		and 		loc_id = #{loc_id}
-		and			device_type = #{device_type}
+		and			con_id = #{con_id}
+		<!-- and			device_type = #{device_type} -->
 		group by 	token_id
 	</select>
 </mapper>

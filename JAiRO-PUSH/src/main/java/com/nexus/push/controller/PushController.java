@@ -54,14 +54,17 @@ public class PushController {
 //	}
 	
 	@PostMapping(value = "/nexus/vk/push/user/{device_type}")
-	public ResponseEntity<PushResponseVo> userMerge(@RequestBody PushMember pushMember){
+	public ResponseEntity<PushResponseVo> userMerge(@PathVariable(value = "device_type") String device_type,
+													@RequestBody PushMember pushMember){
+		logger.info("carrey : "+pushMember.toString());
+		pushMember.setDevice_type(device_type);
 		return userDataCRUDService.post(pushMember);
 	}
 	
-	@GetMapping(value = "/nexus/vk/push/send/{con_id}/{loc_id}")
-	public ResponseEntity<PushResponseVo> visitPush(@PathVariable(value = "con_id") long con_id,
-													@PathVariable(value = "loc_id") long loc_id){
-		mobilePushService.vkPush(con_id, loc_id);
+	@GetMapping(value = "/nexus/vk/push/send/{loc_id}/{con_id}")
+	public ResponseEntity<PushResponseVo> visitPush(@PathVariable(value = "loc_id") long loc_id,
+													@PathVariable(value = "con_id") long con_id){
+		mobilePushService.vkPush(loc_id, con_id);
 		return null;
 	}
 	

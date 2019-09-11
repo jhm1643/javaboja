@@ -15,5 +15,5 @@ public interface PushMemberDao {
 	public List<PushMember> selectByLocId(long loc_id);
 	public int merge(PushMember pushMember);
 	public int delete(PushMember pushMember);
-	public List<PushMember> pushSendList(long loc_id, String device_type);
+	public List<PushMember> pushSendList(long loc_id, long con_id);
 }
