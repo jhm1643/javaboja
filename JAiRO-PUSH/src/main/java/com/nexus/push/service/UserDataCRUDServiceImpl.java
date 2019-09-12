@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.transaction.interceptor.TransactionInterceptor;
 
+import com.google.cloud.firestore.Transaction;
 import com.nexus.push.dao.PushLanguageDao;
 import com.nexus.push.dao.PushLocationDao;
 import com.nexus.push.dao.PushMemberDao;
@@ -18,7 +21,11 @@ import com.nexus.push.entity.PushLocation;
 import com.nexus.push.entity.PushMember;
 import com.nexus.push.entity.PushTokenHistory;
 import com.nexus.push.util.HttpStatusCode;
+
+import ch.qos.logback.classic.Logger;
+import lombok.extern.slf4j.Slf4j;
 @Service
+@Slf4j
 public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataCRUDService {
 
 	@Autowired
@@ -30,6 +37,7 @@ public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataC
 	@Autowired
 	private PushLanguageDao pushLanguageDao;
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<PushResponseVo> post(PushMember pushMember) {
 		try {
 			for(PushLanguage pushLanguage : pushLanguageDao.selectAll()) {
@@ -52,6 +60,7 @@ public class UserDataCRUDServiceImpl extends HttpStatusCode implements UserDataC
 			pushTokenHistoryDao.insert(PushTokenHistory.builder().device_token(pushMember.getToken_id())
 																 .device_type(pushMember.getDevice_type())
 																 .build());
+			
 		}catch(Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return ResponseEntity.status(STATUS_500_CODE)

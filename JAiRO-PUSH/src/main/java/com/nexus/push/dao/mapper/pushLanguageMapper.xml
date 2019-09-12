@@ -4,7 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nexus.push.dao.PushLanguageDao">
 	<cache/>
-	<select id="selectAll" resultType="com.nexus.push.entity.PushLanguage">
+	<resultMap id="PushLanguage" type="com.nexus.push.entity.PushLanguage">
+        <result property="lang_id" column="lang_id"/>
+        <result property="language" column="language"/>
+    </resultMap>
+	<select id="selectAll" resultType="PushLanguage">
 		select lang_id,
 			   language
 		  from t_push_language

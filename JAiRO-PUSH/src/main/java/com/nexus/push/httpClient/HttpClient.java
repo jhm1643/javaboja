@@ -215,8 +215,6 @@ public class HttpClient implements Callback{
 	}
 	
 	public PushResponseVo multiPushStart(PushRequestVo pushRequestVo){
-		
-		
 		//HTTP2 setting for use
 		//Security.insertProviderAt(Conscrypt.newProvider(), 1);
 		

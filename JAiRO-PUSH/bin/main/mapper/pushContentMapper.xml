@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nexus.push.dao.PushContentDao">
+	<select id="selectByConId" resultType="com.nexus.push.entity.PushContent">
+		select		con_id,
+					contents_EN,
+					contents_JA,
+					contents_CH
+		from		t_push_content
+		where		con_id = #{con_id}
+	</select>
+</mapper>

@@ -29,7 +29,6 @@
 		on duplicate key update
 		loc_id = #{loc_id},
 		lang_id = #{lang_id},
-		phone_num = #{phone_num},
 		longtitude = #{longtitude},
 		latitude = #{latitude},
 		mod_date = now()
