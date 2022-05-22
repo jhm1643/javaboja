@@ -1,8 +1,0 @@
-<xHTML>
-<head><Title>EMS_UCE</Title></head>
-	<FRAMESET cols="20%,40%,40%" frameborder=1 border=1>
-		<FRAME src="Operations.html" name="OP" scrolling=yes >
-		<FRAME src="Req.html" name="RQ" scrolling=yes>
-		<FRAME src="Res.html" name="RS" scrolling=yes>
-	</FRAMESET>
-</xHTML>
